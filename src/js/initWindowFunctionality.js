@@ -1,0 +1,78 @@
+import { downloadData } from './downloadData';
+import * as mrec from '@ccp-eva/media-recorder';
+
+/**
+ * Function for checking device orientation.
+ * Attaches eventListener to the browser window, starts webcam recording.
+ *
+ * @param {Object} exp - An object storing our experiment data
+ *
+ * @example
+ *     initWindowFunctionality(exp)
+ */
+export function initWindowFunctionality(exp) {
+  // initially check device orientation
+  if (window.innerHeight > window.innerWidth) {
+    alert('Please turn your device to watch the website in landscape format!');
+  }
+
+  // detect device orientation changes and alert, if portrait mode is used instead of landscape
+  window.addEventListener('orientationchange', () => {
+    const afterOrientationChange = () => {
+      if (window.innerHeight > window.innerWidth)
+        alert(`${exp.txt.landscapemode}`);
+    };
+    // the orientationchange event is triggered before the rotation is complete.
+    // therefore, await resize and then evaluate innerHeight & innerWidth
+    window.addEventListener('resize', afterOrientationChange, {
+      capture: false,
+      once: true,
+    });
+  });
+
+  // ---------------------------------------------------------------------------------------------------------------------
+  // PUT DOWNLOAD FUNCTIONS INTO GLOBAL SCOPE SO THAT WE CAN DOWNLOAD FROM CONSOLE
+  // ---------------------------------------------------------------------------------------------------------------------
+  window.downloadJson = () => {
+    downloadData({ meta: exp.meta, log: exp.log }, exp.meta.subjID);
+  };
+
+  window.mrec = mrec;
+  window.downloadWebm = () => {
+    mrec.stopRecorder();
+    const day = new Date().toISOString().substr(0, 10);
+    const time = new Date().toISOString().substr(11, 8);
+    setTimeout(
+      () => mrec.downloadVideo(`tango-cc-${exp.meta.subjID}-${day}-${time}`),
+      1000,
+    );
+  };
+
+  // ---------------------------------------------------------------------------------------------------------------------
+  // START WEBCAM RECORDING
+  // only if not iOS Safari and if selected by user
+  // ---------------------------------------------------------------------------------------------------------------------
+  if (!exp.meta.iOSSafari && exp.meta.webcam) {
+    mrec.startRecorder({
+      audio: true,
+      video: {
+        frameRate: {
+          min: 3,
+          ideal: 5,
+          max: 30,
+        },
+        width: {
+          min: 160,
+          ideal: 320,
+          max: 640,
+        },
+        height: {
+          min: 120,
+          ideal: 240,
+          max: 480,
+        },
+        facingMode: 'user',
+      },
+    });
+  }
+}
