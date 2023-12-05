@@ -22,7 +22,7 @@ export async function handleSpeakerClick(exp) {
   }
 
   // for goodbye message
-  if (exp.trial === exp.trials.totalNr) {
+  if (exp.trial === exp.meta.trialsTotal) {
     await playFullAudio(exp, goodbyeSrc);
   }
 }

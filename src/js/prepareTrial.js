@@ -1,8 +1,8 @@
 import { gsap } from 'gsap';
-import { showElement } from './showElement';
 import { getGazeCoords } from './getGazeCoords';
-import { distancePoints } from './distancePoints';
 import { showSlide } from './showSlide';
+import { startTrial } from './startTrial';
+import { animateTrial } from './animateTrial';
 
 /**
  * Function that prepares a given trial,
@@ -15,21 +15,37 @@ import { showSlide } from './showSlide';
  *     prepareTrial(exp)
  */
 export function prepareTrial(exp) {
-  // show blurred canvas and button
-  showSlide(
-    [
-      document.getElementById('experimentslide-button'),
-      document.getElementById('cover-blurr'),
-    ],
-    [],
-  );
+  const button = document.getElementById('experimentslide-button');
 
-  // show agent and target of the current trial only, hide the other ones
-  showElement(exp.agents, exp.trial);
-  showElement(exp.targets, exp.trial);
+  // show blurred canvas and button
+  showSlide([button, document.getElementById('cover-blurr')], []);
+
+  if (exp.trial === 0) {
+    showSlide(
+      [
+        document.getElementById(`${exp.log[exp.trial].agent}`),
+        document.getElementById(`${exp.log[exp.trial].target}`),
+      ],
+      [],
+    );
+  }
+
+  // show agent and target of the current trial only, hide the last
+  if (exp.trial > 0) {
+    showSlide(
+      [
+        document.getElementById(`${exp.log[exp.trial].agent}`),
+        document.getElementById(`${exp.log[exp.trial].target}`),
+      ],
+      [
+        document.getElementById(`${exp.log[exp.trial - 1].agent}`),
+        document.getElementById(`${exp.log[exp.trial - 1].target}`),
+      ],
+    );
+  }
 
   // get relevant elements
-  const currentAgent = `${exp.agents[exp.trial].getAttribute('id')}`;
+  const currentAgent = exp.log[exp.trial].agent;
   const pupilLeft = document.getElementById(`${currentAgent}-pupil-left`);
   const pupilRight = document.getElementById(`${currentAgent}-pupil-right`);
   const irisLeft = document.getElementById(`${currentAgent}-iris-left`);
@@ -39,37 +55,42 @@ export function prepareTrial(exp) {
   const hedge = document.getElementById('hedge');
 
   // set eyes to center
-  // original value stored in e.g. pupilLeft.getBBox().x
-  // but we just need to remove the transform attribute
+  // original value stored in e.g. pupilLeft.getBBox().x but we just need to remove the transform attribute
   gsap.set(
-    [pupilLeft, pupilRight, irisLeft, irisRight, hedge, exp.targets[exp.trial]],
+    [
+      pupilLeft,
+      pupilRight,
+      irisLeft,
+      irisRight,
+      hedge,
+      exp.log[exp.trial].target,
+    ],
     {
       x: 0,
       y: 0,
     },
   );
 
-  if (exp.trials.type[exp.trial] === 'touch') {
+  if (exp.log[exp.trial].trialType === 'touch') {
     showSlide([], [hedge]);
-    // for tablet hedge version
   } else {
     showSlide([hedge], []);
   }
 
   // calculate how far the balloon will fly
-  // for tablet trials where balloon directly goes to final position
   exp.elemSpecs.targets.centerFinal = {
-    x: exp.positions[exp.trial].x - exp.elemSpecs.targets.center.x,
-    y: exp.positions[exp.trial].y - exp.elemSpecs.targets.center.y,
+    x: exp.log[exp.trial].targetX - exp.elemSpecs.targets.center.x,
+    y: exp.log[exp.trial].targetY - exp.elemSpecs.targets.center.y,
   };
 
   // calculate where eyes should move in the trial
   const gazeCoordsLeft = getGazeCoords(
-    exp.targets[exp.trial],
-    exp.positions[exp.trial],
+    document.getElementById(`${exp.log[exp.trial].target}`),
+    { x: exp.log[exp.trial].targetX, y: exp.log[exp.trial].targetY },
     pupilLeft,
     eyelineLeft,
   );
+
   exp.elemSpecs.eyes[currentAgent].left.final = gazeCoordsLeft;
 
   exp.elemSpecs.eyes[currentAgent].left.centerFinal = {
@@ -78,11 +99,12 @@ export function prepareTrial(exp) {
   };
 
   const gazeCoordsRight = getGazeCoords(
-    exp.targets[exp.trial],
-    exp.positions[exp.trial],
+    document.getElementById(`${exp.log[exp.trial].target}`),
+    { x: exp.log[exp.trial].targetX, y: exp.log[exp.trial].targetY },
     pupilRight,
     eyelineRight,
   );
+
   exp.elemSpecs.eyes[currentAgent].right.final = gazeCoordsRight;
 
   exp.elemSpecs.eyes[currentAgent].right.centerFinal = {
@@ -90,20 +112,20 @@ export function prepareTrial(exp) {
     y: gazeCoordsRight.y - exp.elemSpecs.eyes[currentAgent].right.center.y,
   };
 
-  // calculate distance between center and target position, for constant speed
-  const distanceCenterFinal = distancePoints(exp.elemSpecs.targets.center, {
-    x: exp.positions[exp.trial].x,
-    y: exp.positions[exp.trial].y,
-  });
+  // gsap exp.timeline that will save our animation specifications
+  exp.timeline = gsap.timeline({ paused: true });
+  exp.timeline.add(animateTrial(exp));
 
-  const perSecond = 700;
-
-  exp.log[exp.trial] = {};
-  exp.log[exp.trial].wrongAreaClick = 0;
-  // for early click, start with -1, because "weiter" click gets added
-  exp.log[exp.trial].earlyClick = -1;
-
-  // save animation speed in our exp object
-  exp.log[exp.trial].durationAnimationBalloonTotal =
-    distanceCenterFinal / perSecond;
+  // attach eventListener to experimentslide button
+  button.addEventListener(
+    'click',
+    // needs to be within unnamed function because otherwise directly called & "skips" welcome content
+    function () {
+      startTrial(exp);
+    },
+    {
+      capture: false,
+      once: true,
+    },
+  );
 }

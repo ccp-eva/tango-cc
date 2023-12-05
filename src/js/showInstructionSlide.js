@@ -1,6 +1,8 @@
 import { showSlide } from './showSlide';
 import { openFullscreen } from './openFullscreen';
 import { handleSpeakerClick } from './handleSpeakerClick';
+import { prepareTrial } from './prepareTrial';
+
 /**
  * Function that shows text on instruction slide and prepares first trial.
  *
@@ -11,9 +13,9 @@ import { handleSpeakerClick } from './handleSpeakerClick';
  */
 export function showInstructionSlide(exp) {
   const button = document.getElementById('textslide-button');
+  const speaker = document.getElementById('speaker');
   const textslide = document.getElementById('textslide');
   const experimentslide = document.getElementById('experimentslide');
-  const speaker = document.getElementById('speaker');
 
   if (!exp.devmode) openFullscreen();
 
@@ -33,17 +35,11 @@ export function showInstructionSlide(exp) {
     [button],
   );
 
-  // ---------------------------------------------------------------------------------------------------------------------
-  // START AUDIO WHEN SPEAKER HAS BEEN CLICKED
-  // ---------------------------------------------------------------------------------------------------------------------
-  // const handleSpeakerClick = async function tmp(event) {
-  //   event.preventDefault();
-  //   if (!exp.devmode) openFullscreen();
-  //   if (!exp.devmode) await playFullAudio(exp, welcomeSrc);
-  //   button.style.pointerEvents = 'auto';
-  //   gsap.to(button, { autoAlpha: 1 });
-  // };
+  if (exp.devmode) {
+    showSlide([button], []);
+  }
 
+  // start audio when speaker has been clicked
   speaker.addEventListener(
     'click',
     function () {
@@ -55,20 +51,14 @@ export function showInstructionSlide(exp) {
     },
   );
 
-  // ---------------------------------------------------------------------------------------------------------------------
-  // SWITCH TO TRIALS WHEN CONTINUE HAS BEEN CLICKED
-  // ---------------------------------------------------------------------------------------------------------------------
-  // const handleContinueClick = (event) => {
-  //   event.preventDefault();
+  // on button click, advance to first trial
+  const handleContinueClick = () => {
+    prepareTrial(exp);
+    showSlide([experimentslide], [textslide, speaker, button]);
+  };
 
-  //   // advance experiment state
-  //   exp.state.shift();
-  //   prepareTrial(exp);
-  //   showSlide([experimentslide], [textslide]);
-  // };
-
-  // button.addEventListener('click', handleContinueClick, {
-  //   capture: false,
-  //   once: true,
-  // });
+  button.addEventListener('click', handleContinueClick, {
+    capture: false,
+    once: true,
+  });
 }

@@ -12,28 +12,40 @@ import { randomInteger } from './randomInteger';
  *
  * @param {Object} exp - An object storing our experiment data
  * @param {Array} agentsSingle - An array containing one of each face (HTML element) to be shown in the study
- * @param {Array} targetSingle - An array containing one of each balloon (HTML element) to be shown in the study
+ * @param {Array} targetsSingle - An array containing one of each balloon (HTML element) to be shown in the study
  *
  * @example
  *     randomizeTrials(exp, [male01, female01], [balloonBlue, balloonGreen]);
 
  */
 export function randomizeTrials(exp, agentsSingle, targetsSingle) {
-  // create array with entry for each touch, fam and test trial
-  const touchTrials = new Array(exp.meta.nrTouch).fill('touch');
-  const famTrials = new Array(exp.meta.nrFam).fill('fam');
-  const testTrials = new Array(exp.meta.nrTest).fill('test');
-  exp.trials.type = touchTrials.concat(famTrials, testTrials);
+  // create array with trials (filter out text slides)
+  let trialArray = exp.state.filter((e) => e !== 'welcome');
+  trialArray = trialArray.filter((e) => e !== 'transition');
+  trialArray = trialArray.filter((e) => e !== 'goodbye');
 
-  // create boolean that stores whether trial should have an instruction voice over
-  exp.trials.voiceover = Array(exp.trials.totalNr).fill(false);
-  for (let i = 1; i <= exp.trials.voiceoverNr; i++) {
-    exp.trials.voiceover[0 + i - 1] = true;
-    exp.trials.voiceover[exp.meta.nrTouch + i - 1] = true;
-    exp.trials.voiceover[exp.meta.nrTouch + exp.meta.nrFam + i - 1] = true;
+  // create response log for each trial
+  for (let i = 0; i < exp.meta.trialsTotal; i++) {
+    exp.log[i] = {};
+    exp.log[i].trialType = trialArray[i];
+    exp.log[i].trialNr = i + 1; // since array starts with 0
   }
 
+  // voice over for first trial of each trial kind
+  exp.devmode ? (exp.log[0].voiceover = false) : (exp.log[0].voiceover = true);
+
+  for (let i = 1; i < exp.meta.trialsTotal; i++) {
+    if (exp.devmode) {
+      exp.log[i].voiceover = false;
+    } else {
+      exp.log[i].voiceover =
+        exp.log[i].trialType == exp.log[i - 1].trialType ? false : true;
+    }
+  }
+
+  // ---------------------------------------------------------------------------------------------------------------------
   // FIX AGENT'S GENDER FOR FIRST 4 TRIALS (coin flip which order in experiment.js)
+  // ---------------------------------------------------------------------------------------------------------------------
   // copy all agents
   const agentsHalf = Math.ceil(agentsSingle.length / 2);
   const femalesSingle = shuffleArray(agentsSingle.slice(0, agentsHalf));
@@ -64,7 +76,7 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
   // calculate how many times each agent should be repeated, based on trialNumber
   const agentsDiv = divideWithRemainder(
     // see how many trials still need agents (should be same as test trial nr - 1 for voice over)
-    exp.trials.type.length - agents.length,
+    exp.meta.trialsTotal - agents.length,
     agentsSingle.length,
   );
 
@@ -83,11 +95,11 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
     agents = agents.concat(agentsTmp);
   }
 
-  exp.agents = agents;
-
+  // ---------------------------------------------------------------------------------------------------------------------
   // SAME FOR TARGET
+  // ---------------------------------------------------------------------------------------------------------------------
   const targetsDiv = divideWithRemainder(
-    exp.trials.type.length,
+    exp.meta.trialsTotal,
     targetsSingle.length,
   );
 
@@ -102,9 +114,10 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
     targetsTmp.splice(0, targetsTmp.length - targetsDiv.remainder);
     targets = targets.concat(targetsTmp);
   }
-  exp.targets = targets;
 
-  // FOR POSITIONS OF TARGET:
+  // ---------------------------------------------------------------------------------------------------------------------
+  // FOR POSITIONS OF TARGET
+  // ---------------------------------------------------------------------------------------------------------------------
   // define possible positions: ten equally big sections, where targets can land
   let positions = [];
   const possiblePositionsCoords = [];
@@ -165,6 +178,15 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
     positions = positions.concat(positionsTmp);
   }
 
-  exp.positions = positions;
-  exp.log = [];
+  // ---------------------------------------------------------------------------------------------------------------------
+  // PREPARE RESPONSE LOG
+  // ---------------------------------------------------------------------------------------------------------------------
+  for (let i = 0; i < exp.meta.trialsTotal; i++) {
+    exp.log[i].agent = agents[i].getAttribute('id');
+    exp.log[i].target = targets[i].getAttribute('id');
+    exp.log[i].bin = positions[i].bin;
+    exp.log[i].targetX = positions[i].x;
+    exp.log[i].targetCenterX = positions[i].x + exp.meta.targetWidth / 2;
+    exp.log[i].targetY = positions[i].y;
+  }
 }

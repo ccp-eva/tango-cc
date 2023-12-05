@@ -26,14 +26,14 @@ export function initDatastructure() {
       subjID: url.searchParams.get('ID') || 'testID',
       lang: url.searchParams.get('lang') || 'ger',
       webcam: JSON.parse(url.searchParams.get('webcam')) || false,
-      nrTouch: url.searchParams.get('touch') || 1,
+      nrTouch: url.searchParams.get('touch') || 2,
       nrFam: url.searchParams.get('fam') || 2,
       nrTest: url.searchParams.get('test') || 2,
       // save some setting values
       touchscreen: checkForTouchscreen(),
       offsetHeight: document.body.offsetHeight,
       offsetWidth: document.body.offsetWidth,
-      ballonwidth: 160,
+      targetWidth: 160,
 
       // TODO: convert this into: see whether face is male / female, adjust audio accordingly
       firstVoiceover: Math.random() < 0.5 ? 'M' : 'F',

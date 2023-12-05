@@ -113,7 +113,7 @@ exp.trials = {};
 exp.trials.touchNr = devmode ? 1 : 1;
 exp.trials.famNr = devmode ? 2 : 2;
 exp.trials.testNr = devmode ? 2 : 16;
-exp.trials.totalNr = exp.trials.touchNr + exp.trials.famNr + exp.trials.testNr;
+exp.meta.totalNr = exp.trials.touchNr + exp.trials.famNr + exp.trials.testNr;
 // this variable stores in which trial we currently are!
 exp.trials.count = 0;
 // NOTE: make sure, that the number of voice over fits to the nr of touch training, fam and test trials!!

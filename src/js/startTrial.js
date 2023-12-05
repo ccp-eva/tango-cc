@@ -1,6 +1,7 @@
 import { showSlide } from './showSlide';
 import { playFullAudio } from './playFullAudio';
 import { pause } from './pause';
+import { handleTargetClick } from './handleTargetClick';
 
 import promptGeneralSrc from '../sounds/ger/prompt-general.mp3';
 import promptHedgeSrc from '../sounds/ger/prompt-hedge.mp3';
@@ -8,7 +9,7 @@ import promptTouchSrc from '../sounds/ger/prompt-touch.mp3';
 import promptTouchLongSrc from '../sounds/ger/prompt-touch-long.mp3';
 
 /**
- * Function for showing a trial.
+ * Function for showing a trial, starts animation of eye & balloon movement.
  *
  * @param {Object} exp - An object storing our experiment data
  *
@@ -22,8 +23,9 @@ export async function startTrial(exp) {
   showSlide(
     [],
     [
-      document.getElementById('experimentslideButton'),
+      document.getElementById('experimentslide-button'),
       document.getElementById('cover-blurr'),
+      document.getElementById('click-bubble'),
     ],
   );
 
@@ -33,39 +35,33 @@ export async function startTrial(exp) {
 
   // play audio prompts for clicking on the tablet:
   // for any trial without voiceover
-  if (!exp.trials.voiceover[exp.trial]) {
+  if (!exp.log[exp.trial].voiceover) {
     exp.soundEffect.src = promptGeneralSrc;
     exp.soundEffect.play();
   }
 
   // for touch trials with voiceover
-  if (exp.trials.type[exp.trial] === 'touch') {
+  if (exp.log[exp.trial].trialType === 'touch') {
     await playFullAudio(exp, promptTouchLongSrc);
   }
 
   // for fam trials with voiceover
-  if (exp.trials.type[exp.trial] === 'fam') {
+  if (exp.log[exp.trial].trialType === 'fam') {
     await playFullAudio(exp, promptHedgeSrc);
   }
 
   // for test trials with voiceover
-  if (exp.trials.type[exp.trial] === 'test') {
+  if (exp.log[exp.trial].trialType === 'test') {
     await playFullAudio(exp, testHedge3Src);
   }
 
-  // save current time to calculate response time later
-  exp.log[exp.trial].responseTime = {
-    t0: new Date().getTime(),
-    t1: 0,
-  };
-
   // runs if participant has not responded within 5 sec
   const noTargetClickWithin5sec = () => {
-    if (exp.trials.type[exp.trial] === 'touch') {
+    if (exp.log[exp.trial].trialType === 'touch') {
       exp.soundEffect.src = promptTouchSrc;
       exp.soundEffect.play();
     }
-    if (exp.trials.type[exp.trial] !== 'touch') {
+    if (exp.log[exp.trial].trialType !== 'touch') {
       exp.soundEffect.src = promptHedgeSrc;
       exp.soundEffect.play();
     }
@@ -79,20 +75,36 @@ export async function startTrial(exp) {
   const hedge = document.getElementById('hedge');
 
   // for touch trials, participants can click in clickable area (size of hedge)
-  if (exp.trials.type[exp.trial] === 'touch') {
+  if (exp.log[exp.trial].trialType === 'touch') {
     clickableArea.setAttribute('pointer-events', 'all');
-    clickableArea.addEventListener('click', handleTargetClick, {
-      capture: false,
-      once: true,
-    });
+    clickableArea.addEventListener(
+      'click',
+      async function () {
+        await handleTargetClick(event, exp);
+      },
+      {
+        capture: false,
+        once: true,
+      },
+    );
   }
 
   // for trials with hedge, participants should click directly on there
-  if (exp.trials.boxesNr[exp.trial] === 0) {
+  if (
+    exp.log[exp.trial].trialType === 'fam' ||
+    exp.log[exp.trial].trialType === 'test'
+  ) {
     clickableArea.setAttribute('pointer-events', 'none');
-    hedge.addEventListener('click', handleTargetClick, {
-      capture: false,
-      once: true,
-    });
+
+    hedge.addEventListener(
+      'click',
+      async function () {
+        await handleTargetClick(event, exp);
+      },
+      {
+        capture: false,
+        once: true,
+      },
+    );
   }
 }

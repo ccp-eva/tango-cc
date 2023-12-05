@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations */
 import { gsap } from 'gsap';
 
 import touch1SrcF from '../sounds/ger/touch-1-f.mp3';
@@ -16,6 +15,7 @@ import balloonLandsSrc from '../sounds/ger/balloon-lands.mp3';
 
 import { playFullAudio } from './playFullAudio';
 import { playAudio } from './playAudio';
+import { distancePoints } from './distancePoints';
 
 /**
  * Function for animating balloon, eyes & hedge in a given trial.
@@ -54,7 +54,8 @@ export function animateTrial(exp) {
   }
 
   // get relevant elements
-  const currentAgent = `${exp.agents[exp.trial].getAttribute('id')}`;
+  const currentTarget = document.getElementById(`${exp.log[exp.trial].target}`);
+  const currentAgent = exp.log[exp.trial].agent;
   const pupilLeft = document.getElementById(`${currentAgent}-pupil-left`);
   const pupilRight = document.getElementById(`${currentAgent}-pupil-right`);
   const irisLeft = document.getElementById(`${currentAgent}-iris-left`);
@@ -66,6 +67,17 @@ export function animateTrial(exp) {
   // general delay
   const delay = 0.5;
   const hedgeDuration = 0.2;
+
+  // calculate distance between center and target position, for constant speed
+  const distanceCenterFinal = distancePoints(exp.elemSpecs.targets.center, {
+    x: exp.log[exp.trial].targetX,
+    y: exp.log[exp.trial].targetY,
+  });
+
+  const perSecond = 700;
+
+  // save animation speed in our exp object
+  const durationAnimationBalloonTotal = distanceCenterFinal / perSecond;
 
   // -------------------------------------------------------------------------------------------------------------------
   // define common movements/ animations
@@ -87,15 +99,18 @@ export function animateTrial(exp) {
       },
       '<',
     )
-    .set([exp.agents[exp.trial], pupilLeft, pupilRight, irisLeft, irisRight], {
-      scale: 1,
-      opacity: 1,
-    });
+    .set(
+      [exp.log[exp.trial].agent, pupilLeft, pupilRight, irisLeft, irisRight],
+      {
+        scale: 1,
+        opacity: 1,
+      },
+    );
 
   const ballonToGround = gsap.timeline({ paused: true });
   ballonToGround
-    .to(exp.targets[exp.trial], {
-      duration: exp.log[exp.trial].durationAnimationBalloonTotal,
+    .to(currentTarget, {
+      duration: durationAnimationBalloonTotal,
       ease: 'none',
       x: exp.elemSpecs.targets.centerFinal.x,
       y: exp.elemSpecs.targets.centerFinal.y,
@@ -103,7 +118,7 @@ export function animateTrial(exp) {
     .to(
       [pupilLeft, irisLeft],
       {
-        duration: exp.log[exp.trial].durationAnimationBalloonTotal,
+        duration: durationAnimationBalloonTotal,
         ease: 'none',
         x: exp.elemSpecs.eyes[currentAgent].left.centerFinal.x,
         y: exp.elemSpecs.eyes[currentAgent].left.centerFinal.y,
@@ -113,7 +128,7 @@ export function animateTrial(exp) {
     .to(
       [pupilRight, irisRight],
       {
-        duration: exp.log[exp.trial].durationAnimationBalloonTotal,
+        duration: durationAnimationBalloonTotal,
         ease: 'none',
         x: exp.elemSpecs.eyes[currentAgent].right.centerFinal.x,
         y: exp.elemSpecs.eyes[currentAgent].right.centerFinal.y,
@@ -128,9 +143,9 @@ export function animateTrial(exp) {
   // define animation depending on trial type
   // -------------------------------------------------------------------------------------------------------------------
   // TOUCH TRIALS
-  if (exp.trials.type[exp.trial] === 'touch') {
+  if (exp.log[exp.trial].trialType === 'touch') {
     // for instructions voice over
-    if (exp.trials.voiceover[exp.trial]) {
+    if (exp.log[exp.trial].voiceover) {
       timeline.eventCallback('onStart', playAudio, [exp, touch1Src]);
       attentionGetter.delay(exp.elemSpecs.animAudioDur[touch1Src] + delay);
     }
@@ -142,12 +157,12 @@ export function animateTrial(exp) {
   }
 
   // FAM TRIALS
-  if (exp.trials.type[exp.trial] === 'fam') {
+  if (exp.log[exp.trial].trialType === 'fam') {
     const hedgeSetHalfWay = gsap.set(hedge, {
-      y: hedge.getBBox().height - exp.targets[exp.trial].getBBox().height - 75,
+      y: hedge.getBBox().height - exp.elemSpecs.targets.height - 75,
     });
 
-    if (exp.trials.voiceover[exp.trial]) {
+    if (exp.log[exp.trial].voiceover) {
       timeline.eventCallback('onStart', playAudio, [exp, famHedge1Src]);
       attentionGetter.delay(exp.elemSpecs.animAudioDur[famHedge1Src] + delay);
     }
@@ -161,9 +176,9 @@ export function animateTrial(exp) {
   }
 
   // TEST TRIALS
-  if (exp.trials.type[exp.trial] === 'test') {
+  if (exp.log[exp.trial].trialType === 'test') {
     const hedgeHalfDown = gsap.to(hedge, {
-      y: hedge.getBBox().height - exp.targets[exp.trial].getBBox().height - 75,
+      y: hedge.getBBox().height - exp.elemSpecs.targets.height - 75,
       duration: hedgeDuration,
       ease: 'none',
     });
@@ -171,8 +186,7 @@ export function animateTrial(exp) {
     const hedgeUp = gsap.fromTo(
       hedge,
       {
-        y:
-          hedge.getBBox().height - exp.targets[exp.trial].getBBox().height - 75,
+        y: hedge.getBBox().height - exp.elemSpecs.targets.height - 75,
       },
       {
         y: 0,
@@ -181,7 +195,7 @@ export function animateTrial(exp) {
       },
     );
 
-    if (exp.trials.voiceover[exp.trial]) {
+    if (exp.log[exp.trial].voiceover) {
       timeline.eventCallback('onStart', playAudio, [exp, testHedge1Src]);
       hedgeUp.delay(exp.elemSpecs.animAudioDur[testHedge1Src] + delay);
       hedgeUp.eventCallback('onComplete', playAudio, [exp, testHedge2Src]);

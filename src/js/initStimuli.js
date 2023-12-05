@@ -58,7 +58,7 @@ export function initStimuli(exp) {
 
   // hide all agents & balloons
   [allAgents, targetsSingle].forEach((target) => {
-    gsap.set(target, { autoAlpha: 0 });
+    gsap.set(target, { attr: { visibility: 'hidden' } });
   });
 
   // save the original eye positions (so when eye is in the center)
@@ -112,6 +112,8 @@ export function initStimuli(exp) {
 
   // calculate some positions of the targets
   exp.elemSpecs.targets = {
+    width: balloonBlue.getBBox().width,
+    height: balloonBlue.getBBox().height,
     center: {
       x: balloonBlue.getBBox().x,
       y: balloonBlue.getBBox().y,

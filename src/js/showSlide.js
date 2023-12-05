@@ -11,9 +11,9 @@ import { gsap } from 'gsap';
  */
 export function showSlide(toSee, toHide) {
   toSee.forEach((element) => {
-    gsap.set(element, { autoAlpha: 1 });
+    gsap.set(element, { attr: { visibility: 'visible' } });
   });
   toHide.forEach((element) => {
-    gsap.set(element, { autoAlpha: 0 });
+    gsap.set(element, { attr: { visibility: 'hidden' } });
   });
 }

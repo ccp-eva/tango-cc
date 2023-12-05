@@ -1,5 +1,6 @@
 import { showSlide } from './showSlide';
 import { showInstructionSlide } from './showInstructionSlide';
+import { gsap } from 'gsap';
 
 /**
  * Function that shows text on welcome slide and passes over to instructions text.
@@ -14,6 +15,7 @@ export function showWelcomeSlide(exp) {
   const textslide = document.getElementById('textslide');
   const experimentslide = document.getElementById('experimentslide');
   const speaker = document.getElementById('speaker');
+  const clickableArea = document.getElementById('clickable-area');
 
   document
     .getElementById('foreign-object-heading')
@@ -25,7 +27,7 @@ export function showWelcomeSlide(exp) {
     .getElementById('foreign-object-center-right')
     .appendChild(exp.txt.familyImage);
 
-  showSlide([textslide], [experimentslide, speaker]);
+  showSlide([textslide], [experimentslide, speaker, clickableArea]);
 
   // when button is clicked, advance to instructions
   button.addEventListener(
