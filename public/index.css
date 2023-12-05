@@ -3,24 +3,22 @@
   --ccp-light-blue: hsl(195, 100%, 46%);
   --ccp-minerva-green: hsl(177, 100%, 21%);
   --ccp-light-green: hsl(64, 70%, 49%);
+  background-color: var(--ccp-minerva-green);
 }
 
-body {
+body, input, select {
   font-family: "PT Sans Narrow", sans-serif;
-  background-color: var(--ccp-minerva-green);
 }
 
 .heading {
   font-family: cholla-sans, sans-serif;
   font-weight: 700;
   font-size: 40px;
-  letter-spacing: calc(20rem / 1000);
   color: var(--ccp-minerva-green);
   text-align: center;
 }
 
-.text .radio-label{
-  font-family: pt-sans-narrow, sans-serif;
+.text .radio-label {
   font-size: 18px;
   color: hsl(0 0% 10%);
 }
@@ -41,7 +39,6 @@ body {
   width: 70vw;
   margin: 5vh;
   text-align: center;
-
 }
 
 .ccp-button {
@@ -53,7 +50,7 @@ body {
   background-color: hsl(177, 100%, 36%) !important;
 }
 
-.mdc-text-field-character-counter{
+.mdc-text-field-character-counter {
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -61,10 +58,40 @@ body {
   align-items: center;
 }
 
-.mdc-text-field__input{
+.mdc-text-field__input {
   text-align: center;
 }
 
 .radio-label {
   margin: 20px;
+}
+
+#language-options {
+	width: auto;
+	font-size: 16px;
+	padding: 1rem 1rem 1rem;
+	background: #f2f2f3;
+	border: none;
+  border-bottom: rgb(142, 142, 142) solid 1.1px;
+}
+
+.columns {
+  display: flex;
+  align-items: center;
+}
+
+.columns > * {
+ flex-basis: 100%;
+}
+
+.columns img{
+  max-width: 12rem;
+  height: auto;
+  padding: 0%;
+}
+
+.imprint, a {
+  color: rgb(66, 66, 66);
+  font-size: smaller;
+  margin: 0;
 }
