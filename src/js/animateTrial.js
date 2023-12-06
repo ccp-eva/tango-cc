@@ -143,11 +143,11 @@ export function animateTrial(exp) {
   // define animation depending on trial type
   // -------------------------------------------------------------------------------------------------------------------
   // TOUCH TRIALS
-  if (exp.log[exp.trial].trialType === 'touch') {
+  if (exp.state[0] === 'touch') {
     // for instructions voice over
     if (exp.log[exp.trial].voiceover) {
       timeline.eventCallback('onStart', playAudio, [exp, touch1Src]);
-      attentionGetter.delay(exp.elemSpecs.animAudioDur[touch1Src] + delay);
+      attentionGetter.delay(exp.elemSpecs.audioDur[touch1Src] + delay);
     }
     attentionGetter.play();
     ballonToGround.play();
@@ -157,14 +157,14 @@ export function animateTrial(exp) {
   }
 
   // FAM TRIALS
-  if (exp.log[exp.trial].trialType === 'fam') {
+  if (exp.state[0] === 'fam') {
     const hedgeSetHalfWay = gsap.set(hedge, {
       y: hedge.getBBox().height - exp.elemSpecs.targets.height - 75,
     });
 
     if (exp.log[exp.trial].voiceover) {
       timeline.eventCallback('onStart', playAudio, [exp, famHedge1Src]);
-      attentionGetter.delay(exp.elemSpecs.animAudioDur[famHedge1Src] + delay);
+      attentionGetter.delay(exp.elemSpecs.audioDur[famHedge1Src] + delay);
     }
     attentionGetter.play();
     ballonToGround.play();
@@ -176,7 +176,7 @@ export function animateTrial(exp) {
   }
 
   // TEST TRIALS
-  if (exp.log[exp.trial].trialType === 'test') {
+  if (exp.state[0] === 'test') {
     const hedgeHalfDown = gsap.to(hedge, {
       y: hedge.getBBox().height - exp.elemSpecs.targets.height - 75,
       duration: hedgeDuration,
@@ -197,9 +197,9 @@ export function animateTrial(exp) {
 
     if (exp.log[exp.trial].voiceover) {
       timeline.eventCallback('onStart', playAudio, [exp, testHedge1Src]);
-      hedgeUp.delay(exp.elemSpecs.animAudioDur[testHedge1Src] + delay);
+      hedgeUp.delay(exp.elemSpecs.audioDur[testHedge1Src] + delay);
       hedgeUp.eventCallback('onComplete', playAudio, [exp, testHedge2Src]);
-      attentionGetter.delay(exp.elemSpecs.animAudioDur[testHedge2Src] + delay);
+      attentionGetter.delay(exp.elemSpecs.audioDur[testHedge2Src] + delay);
     }
     hedgeUp.play();
     attentionGetter.play();

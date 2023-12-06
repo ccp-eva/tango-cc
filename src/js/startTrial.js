@@ -39,30 +39,21 @@ export async function startTrial(exp) {
   if (!exp.log[exp.trial].voiceover) {
     exp.soundEffect.src = promptGeneralSrc;
     exp.soundEffect.play();
-  }
-
-  // for touch trials with voiceover
-  if (exp.log[exp.trial].trialType === 'touch') {
+  } else if (exp.state[0] === 'touch') {
     await playFullAudio(exp, promptTouchLongSrc);
-  }
-
-  // for fam trials with voiceover
-  if (exp.log[exp.trial].trialType === 'fam') {
+  } else if (exp.state[0] === 'fam') {
     await playFullAudio(exp, promptHedgeSrc);
-  }
-
-  // for test trials with voiceover
-  if (exp.log[exp.trial].trialType === 'test') {
+  } else if (exp.state[0] === 'test') {
     await playFullAudio(exp, testHedge3Src);
   }
 
   // runs if participant has not responded within 5 sec
   const noTargetClickWithin5sec = () => {
-    if (exp.log[exp.trial].trialType === 'touch') {
+    if (exp.state[0] === 'touch') {
       exp.soundEffect.src = promptTouchSrc;
       exp.soundEffect.play();
     }
-    if (exp.log[exp.trial].trialType !== 'touch') {
+    if (exp.state[0] !== 'touch') {
       exp.soundEffect.src = promptHedgeSrc;
       exp.soundEffect.play();
     }
@@ -76,7 +67,7 @@ export async function startTrial(exp) {
   const hedge = document.getElementById('hedge');
 
   // for touch trials, participants can click in clickable area (size of hedge)
-  if (exp.log[exp.trial].trialType === 'touch') {
+  if (exp.state[0] === 'touch') {
     clickableArea.setAttribute('pointer-events', 'all');
     clickableArea.addEventListener(
       'click',
@@ -91,10 +82,7 @@ export async function startTrial(exp) {
   }
 
   // for trials with hedge, participants should click directly on there
-  if (
-    exp.log[exp.trial].trialType === 'fam' ||
-    exp.log[exp.trial].trialType === 'test'
-  ) {
+  if (exp.state[0] === 'fam' || exp.state[0] === 'test') {
     clickableArea.setAttribute('pointer-events', 'none');
 
     hedge.addEventListener(
