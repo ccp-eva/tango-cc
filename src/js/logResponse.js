@@ -11,6 +11,10 @@ import clickSrc from '../sounds/ger/click.mp3';
  *     logResponse(event, exp);
  */
 export async function logResponse(event, exp) {
+  // add participant info into log
+  exp.log[exp.trial].id = exp.meta.subjID;
+  exp.log[exp.trial].lang = exp.meta.lang;
+
   // user feedback where they clicked (with sound)
   // create point (needed for transformation function later) and pass event coordinates
   const clickOriginal = exp.elemSpecs.outerSVG.ID.createSVGPoint();
@@ -50,7 +54,7 @@ export async function logResponse(event, exp) {
   // for y: negative values mean too high, positive values mean too low
   exp.log[exp.trial].absoluteClickDistance = Math.abs(
     clickScaled.x - exp.log[exp.trial].targetCenterX,
-  );
+  ).toFixed(2);
 
   // get rid of unneccessary variables for researchers' response log
   delete exp.log[exp.trial].targetX;

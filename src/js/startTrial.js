@@ -7,6 +7,7 @@ import promptGeneralSrc from '../sounds/ger/prompt-general.mp3';
 import promptHedgeSrc from '../sounds/ger/prompt-hedge.mp3';
 import promptTouchSrc from '../sounds/ger/prompt-touch.mp3';
 import promptTouchLongSrc from '../sounds/ger/prompt-touch-long.mp3';
+import testHedge3Src from '../sounds/ger/test-hedge-3-m.mp3';
 
 /**
  * Function for showing a trial, starts animation of eye & balloon movement.

@@ -1,17 +1,12 @@
-import { gsap } from 'gsap';
-
 import './css/tango.css';
 import tangoSVG from './images/tango.svg';
 
-// import self-written functions
 import { experimentalInstructions } from './js/experimentalInstructions';
 import { randomizeTrials } from './js/randomizeTrials';
-
 import { initWindowFunctionality } from './js/initWindowFunctionality';
 import { initDatastructure } from './js/initDatastructure';
 import { initStimuli } from './js/initStimuli';
 import { initAudio } from './js/initAudio';
-import { animateTrial } from './js/animateTrial';
 import { showWelcomeSlide } from './js/showWelcomeSlide';
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -34,8 +29,6 @@ initStimuli(exp);
 
 // save durations of audio files and enable Audio element for future use
 initAudio(exp);
-
-if (exp.devmode) console.log(exp);
 
 // ---------------------------------------------------------------------------------------------------------------------
 // RANDOMIZATION OF AGENTS, TARGETS AND TARGET POSITIONS
@@ -64,37 +57,4 @@ exp.targetClickTimer5sec = null;
 // ---------------------------------------------------------------------------------------------------------------------
 showWelcomeSlide(exp); // in here, prepare famA
 
-// // ---------------------------------------------------------------------------------------------------------------------
-// // RUNS WHEN TRANSITION BUTTON IS CLICKED (between touch, fam and test trials)
-// // ---------------------------------------------------------------------------------------------------------------------
-// const handleTransitionClick = (event) => {
-//   event.preventDefault();
-
-//   showSlide(
-//     [experimentslide],
-//     [textslide, textslideButton, clickBubble, speaker],
-//   );
-
-//   prepareTrial(exp);
-//   exp.timeline = gsap.timeline({ paused: true });
-//   exp.timeline.add(animateTrial(exp));
-//   exp.log[exp.trial].durationAnimationComplete = exp.timeline.duration();
-// };
-
-// // ---------------------------------------------------------------------------------------------------------------------
-// // RUNS WHEN GOODBYE BUTTON IS CLICKED
-// // ---------------------------------------------------------------------------------------------------------------------
-// const handleGoodbyeClick = async function tmp(event) {
-//   event.preventDefault();
-
-//   // pause audio
-//   exp.soundEffect.pause();
-//   exp.soundEffect.currentTime = 0;
-
-//   // disable fullscreen mode
-//   if (!exp.devmode) {
-//     closeFullscreen();
-//   }
-
-//   window.location.replace(`./goodbye.html?ID=${exp.meta.subjID}`);
-// };
+if (exp.devmode) console.log(exp);

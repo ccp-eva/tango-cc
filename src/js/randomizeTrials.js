@@ -21,6 +21,7 @@ import { randomInteger } from './randomInteger';
 export function randomizeTrials(exp, agentsSingle, targetsSingle) {
   // create array with trials (filter out text slides)
   let trialArray = exp.state.filter((e) => e !== 'welcome');
+  trialArray = trialArray.filter((e) => e !== 'instruction');
   trialArray = trialArray.filter((e) => e !== 'transition');
   trialArray = trialArray.filter((e) => e !== 'goodbye');
 

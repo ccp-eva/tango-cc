@@ -53,6 +53,7 @@ export function showInstructionSlide(exp) {
 
   // on button click, advance to first trial
   const handleContinueClick = () => {
+    exp.state.shift();
     prepareTrial(exp);
     showSlide([experimentslide], [textslide, speaker, button]);
   };

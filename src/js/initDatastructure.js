@@ -26,8 +26,8 @@ export function initDatastructure() {
       subjID: url.searchParams.get('ID') || 'testID',
       lang: url.searchParams.get('lang') || 'ger',
       webcam: JSON.parse(url.searchParams.get('webcam')) || false,
-      nrTouch: url.searchParams.get('touch') || 2,
-      nrFam: url.searchParams.get('fam') || 2,
+      nrTouch: url.searchParams.get('touch') || 1,
+      nrFam: url.searchParams.get('fam') || 1,
       nrTest: url.searchParams.get('test') || 2,
       // save some setting values
       touchscreen: checkForTouchscreen(),
@@ -43,7 +43,7 @@ export function initDatastructure() {
   exp.meta.trialsTotal = exp.meta.nrTouch + exp.meta.nrFam + exp.meta.nrTest;
 
   // concatenate trials to go through different study phases
-  exp.state = ['welcome']
+  exp.state = ['welcome', 'instruction']
     .concat(
       new Array(exp.meta.nrTouch).fill('touch'),
       ['transition'],

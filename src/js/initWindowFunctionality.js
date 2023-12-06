@@ -1,4 +1,4 @@
-import { downloadData } from './downloadData';
+import { downloadCsv } from './downloadCsv';
 import * as mrec from '@ccp-eva/media-recorder';
 
 /**
@@ -12,7 +12,7 @@ import * as mrec from '@ccp-eva/media-recorder';
  */
 export function initWindowFunctionality(exp) {
   // initially check device orientation
-  if (window.innerHeight > window.innerWidth) {
+  if (window.innerHeight > window.innerWidth && !exp.devmode) {
     alert('Please turn your device to watch the website in landscape format!');
   }
 
@@ -40,8 +40,8 @@ export function initWindowFunctionality(exp) {
   window.mrec = mrec;
   window.downloadWebm = () => {
     mrec.stopRecorder();
-    const day = new Date().toISOString().substr(0, 10);
-    const time = new Date().toISOString().substr(11, 8);
+    const day = new Date().toISOString().substring(0, 10);
+    const time = new Date().toISOString().substring(11, 19);
     setTimeout(
       () => mrec.downloadVideo(`tango-cc-${exp.meta.subjID}-${day}-${time}`),
       1000,

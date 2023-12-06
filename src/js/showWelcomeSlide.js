@@ -1,6 +1,5 @@
 import { showSlide } from './showSlide';
 import { showInstructionSlide } from './showInstructionSlide';
-import { gsap } from 'gsap';
 
 /**
  * Function that shows text on welcome slide and passes over to instructions text.
@@ -35,6 +34,7 @@ export function showWelcomeSlide(exp) {
 
     // needs to be within unnamed function because otherwise directly called & "skips" welcome content
     function () {
+      exp.state.shift();
       showInstructionSlide(exp);
     },
     {

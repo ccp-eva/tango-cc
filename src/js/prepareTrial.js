@@ -71,7 +71,7 @@ export function prepareTrial(exp) {
     },
   );
 
-  if (exp.log[exp.trial].trialType === 'touch') {
+  if (exp.state[0] === 'touch') {
     showSlide([], [hedge]);
   } else {
     showSlide([hedge], []);
