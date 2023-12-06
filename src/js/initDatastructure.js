@@ -36,9 +36,6 @@ export function initDatastructure() {
       offsetHeight: document.body.offsetHeight,
       offsetWidth: document.body.offsetWidth,
       targetWidth: 160,
-
-      // TODO: convert this into: see whether face is male / female, adjust audio accordingly
-      firstVoiceover: Math.random() < 0.5 ? 'M' : 'F',
     },
   };
 
