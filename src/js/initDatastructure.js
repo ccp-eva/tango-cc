@@ -26,9 +26,9 @@ export function initDatastructure() {
       subjID: url.searchParams.get('ID') || 'testID',
       lang: url.searchParams.get('lang') || 'ger',
       webcam: JSON.parse(url.searchParams.get('webcam')) || false,
-      nrTouch: url.searchParams.get('touch') || 1,
-      nrFam: url.searchParams.get('fam') || 1,
-      nrTest: url.searchParams.get('test') || 2,
+      nrTouch: parseInt(url.searchParams.get('touch')) || 1,
+      nrFam: parseInt(url.searchParams.get('fam')) || 1,
+      nrTest: parseInt(url.searchParams.get('test')) || 2,
       agents:
         url.searchParams.get('agents') || 'f01-f02-f03-f04-m04-m05-m06-m07-m08',
       // save some setting values
