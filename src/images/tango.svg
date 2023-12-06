@@ -4218,7 +4218,7 @@
       <rect id="cover-blurr" x="0" width="1920" height="1080" style="fill: #f4fdff; opacity: .9; stroke-width: 0px;"/>
       <circle id="click-bubble" cx="960" cy="540" r="35" style="fill: #fbb03b; stroke-width: 0px;"/>
       <g id="experimentslide-button">
-        <rect id="experimentslide-button-shape" x="800" y="490" width="320" height="100" rx="12" ry="12" style="fill: #00becc; stroke-width: 0px;"/>
+        <rect id="experimentslide-button-shape" x="800" y="490" width="320" height="100" rx="12" ry="12" style="fill: #29485d; stroke-width: 0px;"/>
         <text id="experimentslide-button-text" x="960" y="540" dominant-baseline="middle" text-anchor="middle" fill="#fff">
       </g>
     </g>
@@ -4228,7 +4228,7 @@
       <rect id="foreign-object-center-big" x="100" y="178.13" width="1720" height="740" style="fill: #fff; stroke-width: 0px;"/>
       <rect id="foreign-object-heading" x="100" y="48.13" width="1720" height="100" style="fill: #fff; stroke-width: 0px;"/>
       <g id="textslide-button">
-        <rect id="textslide-button-shape" x="800" y="948.13" width="320" height="100" rx="12" ry="12" style="fill: #00becc; stroke-width: 0px;"/>
+        <rect id="textslide-button-shape" x="800" y="948.13" width="320" height="100" rx="12" ry="12" style="fill: #29485d; stroke-width: 0px;"/>
         <text id="textslide-button-text" x="960" y="998.13" dominant-baseline="middle" text-anchor="middle" fill="#fff"/>
       </g>
       <g id="speaker">
