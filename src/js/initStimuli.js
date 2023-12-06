@@ -13,58 +13,36 @@ export function initStimuli(exp) {
   const svg = document.getElementById('svg');
   const hedge = document.getElementById('hedge');
 
-  // TODO: flexible face selection
-  // if you change animal agents or targets, then change ID here...
-  const female01 = document.getElementById('female01');
-  const female02 = document.getElementById('female02');
-  const female03 = document.getElementById('female03');
-  const female04 = document.getElementById('female04');
-
-  const male01 = document.getElementById('male01');
-  const male02 = document.getElementById('male02');
-  const male03 = document.getElementById('male03');
-  const male04 = document.getElementById('male04');
-
-  const agentsSingle = [
-    female01,
-    female02,
-    female03,
-    female04,
-    male01,
-    male02,
-    male03,
-    male04,
-  ];
-
-  const agentsChar = [
-    'female01',
-    'female02',
-    'female03',
-    'female04',
-    'male01',
-    'male02',
-    'male03',
-    'male04',
-  ];
-
   const allAgents = Array.from(document.getElementById('agents').children);
 
-  // NOTE: we believe that all target objects are the same size here!!
-  const balloonBlue = document.getElementById('balloon-blue');
-  const balloonRed = document.getElementById('balloon-red');
-  const balloonYellow = document.getElementById('balloon-yellow');
-  const balloonGreen = document.getElementById('balloon-green');
-  const targetsSingle = [balloonBlue, balloonRed, balloonYellow, balloonGreen];
+  //
+  // convert short URL param into SVG element IDs
+  exp.meta.stringAgents = exp.meta.agents
+    .replaceAll('m', 'male')
+    .replaceAll('f', 'female')
+    .split('-');
+
+  exp.meta.selectedAgents = [];
+  exp.meta.stringAgents.forEach((agent) => {
+    exp.meta.selectedAgents.push(document.getElementById(`${agent}`));
+  });
+
+  exp.meta.selectedTargets = [
+    document.getElementById('balloon-blue'),
+    document.getElementById('balloon-red'),
+    document.getElementById('balloon-yellow'),
+    document.getElementById('balloon-green'),
+  ];
 
   // hide all agents & balloons
-  [allAgents, targetsSingle].forEach((target) => {
-    gsap.set(target, { attr: { visibility: 'hidden' } });
+  [allAgents, exp.meta.selectedTargets].forEach((element) => {
+    gsap.set(element, { attr: { visibility: 'hidden' } });
   });
 
   // save the original eye positions (so when eye is in the center)
   exp.elemSpecs.eyes = {};
 
-  agentsChar.forEach((agent) => {
+  exp.meta.stringAgents.forEach((agent) => {
     exp.elemSpecs.eyes[agent] = {
       radius: document
         .getElementById(`${agent}-eyeline-left`)
@@ -112,27 +90,28 @@ export function initStimuli(exp) {
 
   // calculate some positions of the targets
   exp.elemSpecs.targets = {
-    width: balloonBlue.getBBox().width,
-    height: balloonBlue.getBBox().height,
+    width: exp.meta.selectedTargets[0].getBBox().width,
+    height: exp.meta.selectedTargets[0].getBBox().height,
     center: {
-      x: balloonBlue.getBBox().x,
-      y: balloonBlue.getBBox().y,
+      x: exp.meta.selectedTargets[0].getBBox().x,
+      y: exp.meta.selectedTargets[0].getBBox().y,
     },
     // define coords from which point onwards the balloon is hidden behind hedge
     halfway: {
       // position mid, same as in center.x
-      x: balloonBlue.getBBox().x,
+      x: exp.meta.selectedTargets[0].getBBox().x,
       // BBox of hedge is a bit too high to hide balloon (because of single grass halms), therefore / 1.1
       y:
         exp.elemSpecs.outerSVG.origViewBoxHeight - hedge.getBBox().height / 1.1,
     },
     // right side of screen as upper boundary
     borderRight:
-      exp.elemSpecs.outerSVG.origViewBoxWidth - balloonBlue.getBBox().width,
+      exp.elemSpecs.outerSVG.origViewBoxWidth -
+      exp.meta.selectedTargets[0].getBBox().width,
     // calculate y coords for balloon (-20 for little distance from lower border)
     groundY:
       exp.elemSpecs.outerSVG.origViewBoxHeight -
-      balloonBlue.getBBox().height -
+      exp.meta.selectedTargets[0].getBBox().height -
       20,
   };
 

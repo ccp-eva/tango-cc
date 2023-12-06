@@ -33,22 +33,7 @@ initAudio(exp);
 // ---------------------------------------------------------------------------------------------------------------------
 // RANDOMIZATION OF AGENTS, TARGETS AND TARGET POSITIONS
 // ---------------------------------------------------------------------------------------------------------------------
-// create arrays with agents, targets, positions etc. for all the trials
-const agentsSingle = [
-  document.getElementById('female01'),
-  document.getElementById('female02'),
-  document.getElementById('male01'),
-  document.getElementById('male02'),
-];
-
-const targetsSingle = [
-  document.getElementById('balloon-blue'),
-  document.getElementById('balloon-red'),
-  document.getElementById('balloon-yellow'),
-  document.getElementById('balloon-green'),
-];
-
-randomizeTrials(exp, agentsSingle, targetsSingle);
+randomizeTrials(exp, exp.meta.selectedAgents, exp.meta.selectedTargets);
 
 exp.targetClickTimer5sec = null;
 

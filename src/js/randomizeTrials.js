@@ -11,14 +11,14 @@ import { randomInteger } from './randomInteger';
  * Directly manipulates the exp object, stores randomization in log.
  *
  * @param {Object} exp - An object storing our experiment data
- * @param {Array} agentsSingle - An array containing one of each face (HTML element) to be shown in the study
- * @param {Array} targetsSingle - An array containing one of each balloon (HTML element) to be shown in the study
+ * @param {Array} selectedAgents - An array containing one of each face (HTML element) to be shown in the study
+ * @param {Array} selectedTargets - An array containing one of each balloon (HTML element) to be shown in the study
  *
  * @example
  *     randomizeTrials(exp, [male01, female01], [balloonBlue, balloonGreen]);
 
  */
-export function randomizeTrials(exp, agentsSingle, targetsSingle) {
+export function randomizeTrials(exp, selectedAgents, selectedTargets) {
   // create array with trials (filter out text slides)
   let trialArray = exp.state.filter((e) => e !== 'welcome');
   trialArray = trialArray.filter((e) => e !== 'instruction');
@@ -48,9 +48,9 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
   // FIX AGENT'S GENDER FOR FIRST 4 TRIALS (coin flip which order in experiment.js)
   // ---------------------------------------------------------------------------------------------------------------------
   // copy all agents
-  const agentsHalf = Math.ceil(agentsSingle.length / 2);
-  const femalesSingle = shuffleArray(agentsSingle.slice(0, agentsHalf));
-  const malesSingle = shuffleArray(agentsSingle.slice(-agentsHalf));
+  const agentsHalf = Math.ceil(selectedAgents.length / 2);
+  const femalesSingle = shuffleArray(selectedAgents.slice(0, agentsHalf));
+  const malesSingle = shuffleArray(selectedAgents.slice(-agentsHalf));
   let agents = [];
 
   // fix order of female/male for 4 training trials
@@ -78,11 +78,11 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
   const agentsDiv = divideWithRemainder(
     // see how many trials still need agents (should be same as test trial nr - 1 for voice over)
     exp.meta.trialsTotal - agents.length,
-    agentsSingle.length,
+    selectedAgents.length,
   );
 
   for (let i = 0; i < agentsDiv.quotient; i++) {
-    const agentsShuffled = shuffleArray(agentsSingle);
+    const agentsShuffled = shuffleArray(selectedAgents);
     agents = agents.concat(agentsShuffled);
   }
 
@@ -91,7 +91,7 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
   // keep only as many entries in array as we need (remove rest)
   // combine with list of repeated agents
   if (agentsDiv.remainder > 0) {
-    const agentsTmp = shuffleArray(agentsSingle);
+    const agentsTmp = shuffleArray(selectedAgents);
     agentsTmp.splice(0, agentsTmp.length - agentsDiv.remainder);
     agents = agents.concat(agentsTmp);
   }
@@ -101,17 +101,17 @@ export function randomizeTrials(exp, agentsSingle, targetsSingle) {
   // ---------------------------------------------------------------------------------------------------------------------
   const targetsDiv = divideWithRemainder(
     exp.meta.trialsTotal,
-    targetsSingle.length,
+    selectedTargets.length,
   );
 
   let targets = [];
   for (let i = 0; i < targetsDiv.quotient; i++) {
-    const targetsShuffled = shuffleArray(targetsSingle);
+    const targetsShuffled = shuffleArray(selectedTargets);
     targets = targets.concat(targetsShuffled);
   }
 
   if (targetsDiv.remainder > 0) {
-    const targetsTmp = shuffleArray(targetsSingle);
+    const targetsTmp = shuffleArray(selectedTargets);
     targetsTmp.splice(0, targetsTmp.length - targetsDiv.remainder);
     targets = targets.concat(targetsTmp);
   }

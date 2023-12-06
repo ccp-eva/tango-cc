@@ -45,7 +45,6 @@ for (const option of webcamOptions) {
 const handleContinueClick = (event) => {
   event.preventDefault();
   const subjID = document.querySelector('.mdc-text-field__input').value;
-  // console.log(`./tango.html?ID=${subjID}&lang=${lang}&webcam=${webcam}`);
   window.location.href = `./tango.html?ID=${subjID}&lang=${lang}&webcam=${webcam}`;
 };
 

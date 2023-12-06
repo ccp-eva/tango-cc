@@ -17,14 +17,6 @@ export function showGoodbyeSlide(exp) {
   const textslide = document.getElementById('textslide');
   const experimentslide = document.getElementById('experimentslide');
   const hedge = document.getElementById('hedge');
-  const female01 = document.getElementById('female01');
-  const female02 = document.getElementById('female02');
-  const female03 = document.getElementById('female03');
-  const female04 = document.getElementById('female04');
-  const male01 = document.getElementById('male01');
-  const male02 = document.getElementById('male02');
-  const male03 = document.getElementById('male03');
-  const male04 = document.getElementById('male04');
   const balloonBlue = document.getElementById('balloon-blue');
   const balloonYellow = document.getElementById('balloon-yellow');
   const balloonRed = document.getElementById('balloon-red');
@@ -45,14 +37,8 @@ export function showGoodbyeSlide(exp) {
     [
       experimentslide,
       hedge,
-      female01,
-      female02,
-      female03,
-      female04,
-      male01,
-      male02,
-      male03,
-      male04,
+      exp.meta.selectedAgents,
+      exp.meta.selectedTargets,
       balloonBlue,
       balloonGreen,
       balloonRed,

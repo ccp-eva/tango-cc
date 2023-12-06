@@ -14,7 +14,7 @@ export function initDatastructure() {
   const url = new URL(document.location.href);
 
   const exp = {
-    devmode: false, // true speeds up developing (e.g. playback rate)
+    devmode: true, // true speeds up developing (e.g. playback rate)
     trial: 0, // counter which trial we are in
 
     // create empty variables for future storing
@@ -29,6 +29,8 @@ export function initDatastructure() {
       nrTouch: url.searchParams.get('touch') || 1,
       nrFam: url.searchParams.get('fam') || 1,
       nrTest: url.searchParams.get('test') || 2,
+      agents:
+        url.searchParams.get('agents') || 'f01-f02-f03-f04-m04-m05-m06-m07-m08',
       // save some setting values
       touchscreen: checkForTouchscreen(),
       offsetHeight: document.body.offsetHeight,

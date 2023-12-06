@@ -18,7 +18,7 @@ import testHedge3Src from '../sounds/ger/test-hedge-3-m.mp3';
  *     startTrial(exp)
  */
 export async function startTrial(exp) {
-  if (exp.devmode) console.log('trial: ', exp.trial);
+  if (exp.devmode) console.log('trial: ', exp.trial + 1);
 
   // hide blurr canvas and button, so that stimuli are visible
   showSlide(
