@@ -14,7 +14,7 @@ export function initDatastructure() {
   const url = new URL(document.location.href);
 
   const exp = {
-    devmode: true, // true speeds up developing (e.g. playback rate)
+    devmode: false, // true speeds up developing (e.g. playback rate)
     trial: 0, // counter which trial we are in
 
     // create empty variables for future storing

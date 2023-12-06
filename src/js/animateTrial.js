@@ -34,23 +34,19 @@ export function animateTrial(exp) {
   let testHedge2Src;
   let testHedge3Src;
 
-  switch (exp.meta.firstVoiceover) {
-    case 'F':
-      touch1Src = touch1SrcF;
-      famHedge1Src = famHedge1SrcM;
-      testHedge1Src = testHedge1SrcM;
-      testHedge2Src = testHedge2SrcM;
-      testHedge3Src = testHedge3SrcM;
-      break;
-    case 'M':
-      touch1Src = touch1SrcM;
-      famHedge1Src = famHedge1SrcF;
-      testHedge1Src = testHedge1SrcF;
-      testHedge2Src = testHedge2SrcF;
-      testHedge3Src = testHedge3SrcF;
-      break;
-    default:
-      console.log('error in importing sounds');
+  // depending on which gender the current agent has, set audio
+  if (exp.log[exp.trial].agent.startsWith('female')) {
+    touch1Src = touch1SrcF;
+    famHedge1Src = famHedge1SrcF;
+    testHedge1Src = testHedge1SrcF;
+    testHedge2Src = testHedge2SrcF;
+    testHedge3Src = testHedge3SrcF;
+  } else if (exp.log[exp.trial].agent.startsWith('male')) {
+    touch1Src = touch1SrcM;
+    famHedge1Src = famHedge1SrcF;
+    testHedge1Src = testHedge1SrcF;
+    testHedge2Src = testHedge2SrcF;
+    testHedge3Src = testHedge3SrcF;
   }
 
   // get relevant elements
