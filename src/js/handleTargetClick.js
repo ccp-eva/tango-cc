@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-import { showSlide } from './showSlide';
 import { logResponse } from './logResponse';
 import { pause } from './pause';
 import { prepareTrial } from './prepareTrial';

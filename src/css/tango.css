@@ -45,3 +45,7 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+
+svg {
+    cursor: pointer;
+  }

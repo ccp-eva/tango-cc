@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./logos/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Material Design CDN CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+    />
+
+    <!-- Material Design CDN JS -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- Material Design Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Typography -->
+    <link rel="stylesheet" href="https://use.typekit.net/ess7xmw.css" />
+    <title>TANGO-CC</title>
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="./customize.js"></script>
+  </head>
+
+  <body>
+    <div id="flex-wrapper">
+      <div class="flex-item">
+        <h1 class="heading">Customize your study</h1>
+
+        <p class="text">
+          <strong> Please choose the number of trials: </strong>
+        </p>
+
+        <div class="columns">
+          <div class="col">
+            <p>Training 1:</p>
+            <label class="mdc-text-field mdc-text-field--filled">
+              <input
+                id="touch"
+                class="mdc-text-field__input"
+                type="number"
+                min="1"
+                max="20"
+                step="1"
+                value="1"
+              />
+              <span class="mdc-line-ripple"></span>
+            </label>
+          </div>
+
+          <div class="col">
+            <p>Training 2:</p>
+            <label class="mdc-text-field mdc-text-field--filled">
+              <input
+                id="fam"
+                class="mdc-text-field__input"
+                type="number"
+                min="1"
+                max="20"
+                step="1"
+                value="2"
+              />
+              <span class="mdc-line-ripple"></span>
+            </label>
+          </div>
+
+          <div class="col">
+            <p>Test trials:</p>
+            <label class="mdc-text-field mdc-text-field--filled">
+              <input
+                id="test"
+                class="mdc-text-field__input"
+                type="number"
+                min="1"
+                max="20"
+                step="1"
+                value="16"
+              />
+              <span class="mdc-line-ripple"></span>
+            </label>
+          </div>
+        </div>
+
+        <br />
+
+        <p class="text">
+          <strong> Please choose the background: </strong>
+        </p>
+        <div class="bg-container columns">
+          <div class="col">
+            <img
+              id="b01"
+              class="bg-img"
+              src="./images/backgrounds/background01.png"
+            />
+          </div>
+          <div class="col">
+            <img
+              id="b02"
+              class="bg-img"
+              src="./images/backgrounds/background02.png"
+            />
+          </div>
+          <div class="col">
+            <img
+              id="b03"
+              class="bg-img"
+              src="./images/backgrounds/background03.png"
+            />
+          </div>
+        </div>
+        <br />
+
+        <p class="text">
+          <strong> Please choose which agents should be displayed: </strong>
+        </p>
+        <div class="agents-container">
+          <img id="f01" src="./images/agents/f01.png" />
+          <img id="f02" src="./images/agents/f02.png" />
+          <img id="f03" src="./images/agents/f03.png" />
+          <img id="f04" src="./images/agents/f04.png" />
+          <img id="f05" src="./images/agents/f05.png" />
+          <img id="f06" src="./images/agents/f06.png" />
+          <img id="f07" src="./images/agents/f07.png" />
+          <img id="f08" src="./images/agents/f08.png" />
+          <img id="f09" src="./images/agents/f09.png" />
+          <img id="f10" src="./images/agents/f10.png" />
+          <img id="f11" src="./images/agents/f11.png" />
+          <img id="f12" src="./images/agents/f12.png" />
+          <img id="f13" src="./images/agents/f13.png" />
+          <img id="f14" src="./images/agents/f14.png" />
+          <img id="f15" src="./images/agents/f15.png" />
+          <img id="f16" src="./images/agents/f16.png" />
+          <img id="f17" src="./images/agents/f17.png" />
+          <img id="f18" src="./images/agents/f18.png" />
+          <img id="f19" src="./images/agents/f19.png" />
+          <img id="f20" src="./images/agents/f20.png" />
+          <img id="f21" src="./images/agents/f21.png" />
+          <img id="f22" src="./images/agents/f22.png" />
+          <img id="f23" src="./images/agents/f23.png" />
+          <img id="f24" src="./images/agents/f24.png" />
+          <img id="f25" src="./images/agents/f25.png" />
+          <img id="m01" src="./images/agents/m01.png" />
+          <img id="m02" src="./images/agents/m02.png" />
+          <img id="m03" src="./images/agents/m03.png" />
+          <img id="m04" src="./images/agents/m04.png" />
+          <img id="m05" src="./images/agents/m05.png" />
+          <img id="m06" src="./images/agents/m06.png" />
+          <img id="m07" src="./images/agents/m07.png" />
+          <img id="m08" src="./images/agents/m08.png" />
+          <img id="m09" src="./images/agents/m09.png" />
+          <img id="m10" src="./images/agents/m10.png" />
+          <img id="m11" src="./images/agents/m11.png" />
+          <img id="m12" src="./images/agents/m12.png" />
+          <img id="m13" src="./images/agents/m13.png" />
+          <img id="m14" src="./images/agents/m14.png" />
+          <img id="m15" src="./images/agents/m15.png" />
+          <img id="m16" src="./images/agents/m16.png" />
+          <img id="m17" src="./images/agents/m17.png" />
+          <img id="m18" src="./images/agents/m18.png" />
+          <img id="m19" src="./images/agents/m19.png" />
+          <img id="m20" src="./images/agents/m20.png" />
+          <img id="m21" src="./images/agents/m21.png" />
+          <img id="m22" src="./images/agents/m22.png" />
+          <img id="m23" src="./images/agents/m23.png" />
+          <img id="m24" src="./images/agents/m24.png" />
+          <img id="m25" src="./images/agents/m25.png" />
+        </div>
+
+        <div id="button-center-wrapper">
+          <button
+            type="button"
+            class="ccp-button confirm mdc-button mdc-button--raised"
+            id="button-center-item"
+          >
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label"><strong>GO TO STUDY</strong></span>
+          </button>
+        </div>
+
+        <br />
+        <hr style="width: 100%; text-align: left; margin-left: 0" />
+
+        <div class="columns">
+          <div class="col">
+            <img id="logo-ccp" src="./logos/mpi-ccp-en.svg" />
+          </div>
+          <div class="col">
+            <img id="logo-leuphana" src="./logos/leuphana-en.svg" />
+          </div>
+        </div>
+
+        <p class="imprint">
+          <a href="https://www.eva.mpg.de/imprint/" target="_blank">Imprint</a>
+          /
+          <a
+            href="https://www.eva.mpg.de/privacy-policy"
+            target="_blank"
+            id="dataProtection"
+          >
+            Data Protection</a
+          >
+        </p>
+
+        <!-- end flex-item -->
+      </div>
+
+      <!-- end flex-wrapper -->
+    </div>
+  </body>
+</html>

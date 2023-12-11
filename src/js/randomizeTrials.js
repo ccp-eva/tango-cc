@@ -47,31 +47,7 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
   // ---------------------------------------------------------------------------------------------------------------------
   // FIX AGENT'S GENDER FOR FIRST 4 TRIALS (coin flip which order in experiment.js)
   // ---------------------------------------------------------------------------------------------------------------------
-  // copy all agents
-  const agentsHalf = Math.ceil(selectedAgents.length / 2);
-  const femalesSingle = shuffleArray(selectedAgents.slice(0, agentsHalf));
-  const malesSingle = shuffleArray(selectedAgents.slice(-agentsHalf));
-  let agents = [];
-
-  // fix order of female/male for 4 training trials
-  if (exp.meta.firstVoiceover == 'F') {
-    agents = [
-      femalesSingle.shift(),
-      malesSingle.shift(),
-      femalesSingle.shift(),
-      malesSingle.shift(),
-    ];
-  } else {
-    agents = [
-      malesSingle.shift(),
-      femalesSingle.shift(),
-      malesSingle.shift(),
-      femalesSingle.shift(),
-    ];
-  }
-
-  // concat not yet shown agents (first combine female/male, then shuffle, then concat with already defined agents)
-  shuffleArray(femalesSingle.concat(malesSingle)).concat(agents);
+  let agents = shuffleArray(selectedAgents);
 
   // for remaining test trials:
   // calculate how many times each agent should be repeated, based on trialNumber
