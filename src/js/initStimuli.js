@@ -13,9 +13,28 @@ export function initStimuli(exp) {
   const svg = document.getElementById('svg');
   const hedge = document.getElementById('hedge');
 
+  const window01 = document.getElementById('window01');
+  const window02 = document.getElementById('window02');
+  const window03 = document.getElementById('window03');
+  const window04 = document.getElementById('window04');
+  const wall01 = document.getElementById('wall01');
+  const wall02 = document.getElementById('wall02');
+  const wall03 = document.getElementById('wall03');
+  const wall04 = document.getElementById('wall04');
+
+  const bgs = [
+    window01,
+    window02,
+    window03,
+    window04,
+    wall01,
+    wall02,
+    wall03,
+    wall04,
+  ];
+
   const allAgents = Array.from(document.getElementById('agents').children);
 
-  //
   // convert short URL param into SVG element IDs
   exp.meta.stringAgents = exp.meta.agents
     .replaceAll('m', 'male')
@@ -35,7 +54,7 @@ export function initStimuli(exp) {
   ];
 
   // hide all agents & balloons
-  [allAgents, exp.meta.selectedTargets].forEach((element) => {
+  [bgs, allAgents, exp.meta.selectedTargets].forEach((element) => {
     gsap.set(element, { attr: { visibility: 'hidden' } });
   });
 

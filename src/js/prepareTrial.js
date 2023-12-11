@@ -30,6 +30,21 @@ export function prepareTrial(exp) {
     );
   }
 
+  switch (exp.meta.bg) {
+    case 'bg01':
+      gsap.set([window01, wall01], { attr: { visibility: 'visible' } });
+      break;
+    case 'bg02':
+      gsap.set([window02, wall02], { attr: { visibility: 'visible' } });
+      break;
+    case 'bg03':
+      gsap.set([window03, wall03], { attr: { visibility: 'visible' } });
+      break;
+    case 'bg04':
+      gsap.set([window04, wall04], { attr: { visibility: 'visible' } });
+      break;
+  }
+
   // show agent and target of the current trial only, hide the last
   if (exp.trial > 0) {
     showSlide(

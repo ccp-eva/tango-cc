@@ -130,6 +130,10 @@ body, input, select {
   }
 }
 
+.footnote {
+  font-size: 14px;
+}
+
 .imprint, a {
   color: rgb(66, 66, 66);
   font-size: smaller;
