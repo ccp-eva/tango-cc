@@ -93,65 +93,58 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
   // ---------------------------------------------------------------------------------------------------------------------
   // FOR POSITIONS OF TARGET
   // ---------------------------------------------------------------------------------------------------------------------
-  // define possible positions: ten equally big sections, where targets can land
-  let positions = [];
-  const possiblePositionsCoords = [];
-  const bins = 10;
-  let prevMax = 0;
-  for (let i = 1; i <= bins; i++) {
-    const section = {
-      bin: i,
-      type: 'randomLocation',
-      x: randomInteger(prevMax, (exp.elemSpecs.targets.borderRight / bins) * i),
-      y: exp.elemSpecs.targets.groundY,
-    };
-    prevMax = (exp.elemSpecs.targets.borderRight / bins) * i;
-    possiblePositionsCoords.push(section);
-  }
+  let bins = [];
+  const binArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const binNr = 10;
 
   // for touch+fam trials that are less than all nr of possible locations:
-  // take the most extreme positions
-  if (exp.meta.nrTouch + exp.meta.nrFam <= bins) {
+  // take the most extreme bins
+  if (exp.meta.nrTouch + exp.meta.nrFam <= binNr) {
     let lower = 0;
-    let upper = bins - 1;
+    let upper = binNr - 1;
     for (let i = 0; i < exp.meta.nrTouch + exp.meta.nrFam; i++) {
-      // alternate from which end of the array we take the position
+      // alternate from which end of the array we take the bin
       // for even numbers, take from the upper end; for odd, take from lower end
       if (i % 2 === 0) {
-        positions.push(possiblePositionsCoords[upper]);
+        bins.push(binArray[upper]);
         upper--;
       }
       if (i % 2 !== 0) {
-        positions.push(possiblePositionsCoords[lower]);
+        bins.push(binArray[lower]);
         lower++;
       }
     }
   }
-  positions = shuffleArray(positions);
+
+  bins = shuffleArray(bins);
 
   // how many trials are completely randomized
-  const randomPositionsNr =
-    exp.meta.nrTouch + exp.meta.nrFam <= bins
+  const randomBinsNr =
+    exp.meta.nrTouch + exp.meta.nrFam <= binNr
       ? exp.meta.nrTest
-      : exp.trials.totalNr;
+      : exp.meta.trialsTotal;
 
-  // how many times can we repeat each section
-  const positionsDiv = divideWithRemainder(
-    randomPositionsNr,
-    possiblePositionsCoords.length,
-  );
+  // how many times can we repeat each bin
+  const binsDiv = divideWithRemainder(randomBinsNr, binNr);
 
-  for (let i = 0; i < positionsDiv.quotient; i++) {
-    const positionsShuffled = shuffleArray(possiblePositionsCoords);
-    positions = positions.concat(positionsShuffled);
+  for (let i = 0; i < binsDiv.quotient; i++) {
+    bins = bins.concat(shuffleArray(binArray));
   }
 
   // if division with remainder, fill up array
-  if (positionsDiv.remainder > 0) {
-    const positionsTmp = shuffleArray(possiblePositionsCoords);
-    positionsTmp.splice(0, positionsTmp.length - positionsDiv.remainder);
-    positions = positions.concat(positionsTmp);
+  if (binsDiv.remainder > 0) {
+    const binsTmp = shuffleArray(binArray);
+    binsTmp.splice(0, binsTmp.length - binsDiv.remainder);
+    bins = bins.concat(binsTmp);
   }
+
+  // within each bin, create random position
+  let xcoords = [];
+  bins.forEach((bin, i) => {
+    const lower = (exp.elemSpecs.targets.borderRight / binNr) * (bin - 1);
+    const upper = (exp.elemSpecs.targets.borderRight / binNr) * bin;
+    xcoords[i] = randomInteger(lower, upper);
+  });
 
   // ---------------------------------------------------------------------------------------------------------------------
   // PREPARE RESPONSE LOG
@@ -159,9 +152,11 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
   for (let i = 0; i < exp.meta.trialsTotal; i++) {
     exp.log[i].agent = agents[i].getAttribute('id');
     exp.log[i].target = targets[i].getAttribute('id');
-    exp.log[i].bin = positions[i].bin;
-    exp.log[i].targetX = positions[i].x;
-    exp.log[i].targetCenterX = positions[i].x + exp.meta.targetWidth / 2;
-    exp.log[i].targetY = positions[i].y;
+    exp.log[i].bin = bins[i];
+    exp.log[i].targetX = xcoords[i];
+    exp.log[i].targetCenterX = xcoords[i] + exp.meta.targetWidth / 2;
+    exp.log[i].targetY = exp.elemSpecs.targets.groundY;
   }
+
+  console.log(exp.log);
 }
