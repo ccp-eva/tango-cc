@@ -47,13 +47,11 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
   // ---------------------------------------------------------------------------------------------------------------------
   // FIX AGENT'S GENDER FOR FIRST 4 TRIALS (coin flip which order in experiment.js)
   // ---------------------------------------------------------------------------------------------------------------------
-  let agents = shuffleArray(selectedAgents);
+  let agents = [];
 
-  // for remaining test trials:
   // calculate how many times each agent should be repeated, based on trialNumber
   const agentsDiv = divideWithRemainder(
-    // see how many trials still need agents (should be same as test trial nr - 1 for voice over)
-    exp.meta.trialsTotal - agents.length,
+    exp.meta.trialsTotal,
     selectedAgents.length,
   );
 
@@ -62,7 +60,7 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
     agents = agents.concat(agentsShuffled);
   }
 
-  // if our trialNumber (testtrials - 1 for voice over) is not divisable by number of agents, put random agents for remainder number:
+  // if our trialNumber is not divisable by number of agents, put random agents for remainder number:
   // create random array with agents
   // keep only as many entries in array as we need (remove rest)
   // combine with list of repeated agents
