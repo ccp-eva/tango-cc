@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { showSlide } from './showSlide';
 
 /**
  * Function for visbility of faces, storing original eye positions,
@@ -33,6 +33,11 @@ export function initStimuli(exp) {
     wall04,
   ];
 
+  exp.meta.selectedBackground = [
+    document.getElementById(`wall${exp.meta.bg}`),
+    document.getElementById(`window${exp.meta.bg}`),
+  ];
+
   const allAgents = Array.from(document.getElementById('agents').children);
 
   // convert short URL param into SVG element IDs
@@ -54,9 +59,7 @@ export function initStimuli(exp) {
   ];
 
   // hide all agents & balloons
-  [bgs, allAgents, exp.meta.selectedTargets].forEach((element) => {
-    gsap.set(element, { attr: { visibility: 'hidden' } });
-  });
+  showSlide([], [bgs, allAgents, exp.meta.selectedTargets]);
 
   // save the original eye positions (so when eye is in the center)
   exp.elemSpecs.eyes = {};

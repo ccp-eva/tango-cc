@@ -39,6 +39,7 @@ export function showFamToTestSlide(exp) {
       hedge,
       exp.meta.selectedAgents,
       exp.meta.selectedTargets,
+      exp.meta.selectedBackground,
       speaker,
     ],
   );

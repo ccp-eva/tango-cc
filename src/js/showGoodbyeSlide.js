@@ -39,6 +39,7 @@ export function showGoodbyeSlide(exp) {
       hedge,
       exp.meta.selectedAgents,
       exp.meta.selectedTargets,
+      exp.meta.selectedBackground,
       balloonBlue,
       balloonGreen,
       balloonRed,
