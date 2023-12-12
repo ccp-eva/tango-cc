@@ -65,6 +65,7 @@ const handleContinueClick = (event) => {
     // otherwise, select our gafo-cc faces depending on language
   } else {
     let agents;
+    let bg = '01';
     switch (lang) {
       case 'bay':
         agents = 'f01-f02-f03-f04-m01-m02-m03-m04';
@@ -121,7 +122,7 @@ const handleContinueClick = (event) => {
         agents = 'f05-f09-f18-f21-m05-m09-m18-m21';
         break;
     }
-    window.location.href = `./tango.html?ID=${subjID}&lang=${lang}&webcam=${webcam}&agents=${agents}`;
+    window.location.href = `./tango.html?ID=${subjID}&lang=${lang}&webcam=${webcam}&agents=${agents}&bg=${bg}&touch=1&fam=2&test=16`;
   }
 };
 
