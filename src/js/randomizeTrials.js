@@ -157,6 +157,4 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
     exp.log[i].targetCenterX = xcoords[i] + exp.meta.targetWidth / 2;
     exp.log[i].targetY = exp.elemSpecs.targets.groundY;
   }
-
-  console.log(exp.log);
 }
