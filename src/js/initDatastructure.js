@@ -29,7 +29,7 @@ export function initDatastructure() {
       nrTouch: parseInt(url.searchParams.get('touch')) || 1,
       nrFam: parseInt(url.searchParams.get('fam')) || 1,
       nrTest: parseInt(url.searchParams.get('test')) || 2,
-      bg: url.searchParams.get('bg').replace('bg', '') || '04',
+      bg: url.searchParams.get('bg') || '04',
       agents:
         url.searchParams.get('agents') || 'f01-f02-f03-f04-m04-m05-m06-m07-m08',
       // save some setting values
