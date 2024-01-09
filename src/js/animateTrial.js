@@ -1,18 +1,4 @@
 import { gsap } from 'gsap';
-
-import touch1SrcF from '../sounds/ger/touch-1-f.mp3';
-import touch1SrcM from '../sounds/ger/touch-1-m.mp3';
-import famHedge1SrcF from '../sounds/ger/fam-hedge-1-f.mp3';
-import famHedge1SrcM from '../sounds/ger/fam-hedge-1-m.mp3';
-import testHedge1SrcF from '../sounds/ger/test-hedge-1-f.mp3';
-import testHedge1SrcM from '../sounds/ger/test-hedge-1-m.mp3';
-import testHedge2SrcF from '../sounds/ger/test-hedge-2-f.mp3';
-import testHedge2SrcM from '../sounds/ger/test-hedge-2-m.mp3';
-import testHedge3SrcF from '../sounds/ger/test-hedge-3-f.mp3';
-import testHedge3SrcM from '../sounds/ger/test-hedge-3-m.mp3';
-import blinkSrc from '../sounds/ger/blink.mp3';
-import balloonLandsSrc from '../sounds/ger/balloon-lands.mp3';
-
 import { playFullAudio } from './playFullAudio';
 import { playAudio } from './playAudio';
 import { distancePoints } from './distancePoints';
@@ -36,17 +22,17 @@ export function animateTrial(exp) {
 
   // depending on which gender the current agent has, set audio
   if (exp.log[exp.trial].agent.startsWith('female')) {
-    touch1Src = touch1SrcF;
-    famHedge1Src = famHedge1SrcF;
-    testHedge1Src = testHedge1SrcF;
-    testHedge2Src = testHedge2SrcF;
-    testHedge3Src = testHedge3SrcF;
+    touch1Src = `../sounds/${exp.meta.lang}/touch-1-f.mp3`;
+    famHedge1Src = `../sounds/${exp.meta.lang}/fam-hedge-1-f.mp3`;
+    testHedge1Src = `../sounds/${exp.meta.lang}/test-hedge-1-f.mp3`;
+    testHedge2Src = `../sounds/${exp.meta.lang}/test-hedge-2-f.mp3`;
+    testHedge3Src = `../sounds/${exp.meta.lang}/test-hedge-3-f.mp3`;
   } else if (exp.log[exp.trial].agent.startsWith('male')) {
-    touch1Src = touch1SrcM;
-    famHedge1Src = famHedge1SrcF;
-    testHedge1Src = testHedge1SrcF;
-    testHedge2Src = testHedge2SrcF;
-    testHedge3Src = testHedge3SrcF;
+    touch1Src = `../sounds/${exp.meta.lang}/touch-1-m.mp3`;
+    famHedge1Src = `../sounds/${exp.meta.lang}/fam-hedge-1-m.mp3`;
+    testHedge1Src = `../sounds/${exp.meta.lang}/test-hedge-1-m.mp3`;
+    testHedge2Src = `../sounds/${exp.meta.lang}/test-hedge-2-m.mp3`;
+    testHedge3Src = `../sounds/${exp.meta.lang}/test-hedge-3-m.mp3`;
   }
 
   // get relevant elements
@@ -88,9 +74,9 @@ export function animateTrial(exp) {
         duration: 0.3,
         transformOrigin: '50% 50%',
         onStart: async function onStart() {
-          await playFullAudio(exp, blinkSrc);
+          await playFullAudio(exp, `../sounds/${exp.meta.lang}/blink.mp3`);
           // already set source for balloon landing here, so that sound is already preloaded
-          exp.soundEffect.src = balloonLandsSrc;
+          exp.soundEffect.src = `../sounds/${exp.meta.lang}/balloon-lands.mp3`;
         },
       },
       '<',

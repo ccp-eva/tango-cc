@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import clickSrc from '../sounds/ger/click.mp3';
+import { playAudio } from './playAudio';
 
 /**
  * Function for logging participant responses after a trial.
@@ -46,8 +46,7 @@ export async function logResponse(event, exp) {
   });
 
   // play positive user feedback
-  exp.soundEffect.src = clickSrc;
-  exp.soundEffect.play();
+  playAudio(exp, `../sounds/${exp.meta.lang}/positive-feedback.mp3`);
 
   // NOTE: the SVG coord system starts with 0, 0 in upper left corner
   // for x: negative values mean too far left, positive values mean too far right

@@ -1,14 +1,3 @@
-import touch1SrcF from '../sounds/ger/touch-1-f.mp3';
-import touch1SrcM from '../sounds/ger/touch-1-m.mp3';
-import famHedge1SrcF from '../sounds/ger/fam-hedge-1-f.mp3';
-import famHedge1SrcM from '../sounds/ger/fam-hedge-1-m.mp3';
-import testHedge1SrcF from '../sounds/ger/test-hedge-1-f.mp3';
-import testHedge1SrcM from '../sounds/ger/test-hedge-1-m.mp3';
-import testHedge2SrcF from '../sounds/ger/test-hedge-2-f.mp3';
-import testHedge2SrcM from '../sounds/ger/test-hedge-2-m.mp3';
-import testHedge3SrcF from '../sounds/ger/test-hedge-3-f.mp3';
-import testHedge3SrcM from '../sounds/ger/test-hedge-3-m.mp3';
-
 /**
  * Function for saving audio durations and unlocking Audio element
  *
@@ -17,32 +6,7 @@ import testHedge3SrcM from '../sounds/ger/test-hedge-3-m.mp3';
  * @example
  *     initAudio(exp)
  */
-export function initAudio(exp) {
-  // SAVE DURATION OF AUDIO FILES
-  exp.elemSpecs.audioDur = {};
-  const audioSrcs = [
-    touch1SrcF,
-    touch1SrcM,
-    famHedge1SrcF,
-    famHedge1SrcM,
-    testHedge1SrcF,
-    testHedge1SrcM,
-    testHedge2SrcF,
-    testHedge2SrcM,
-    testHedge3SrcF,
-    testHedge3SrcM,
-  ];
-
-  audioSrcs.forEach((src) => {
-    const audioTmp = new Audio();
-    audioTmp.src = src;
-    audioTmp.onloadedmetadata = () => {
-      exp.devmode
-        ? (exp.elemSpecs.audioDur[src] = audioTmp.duration / 4)
-        : (exp.elemSpecs.audioDur[src] = audioTmp.duration);
-    };
-  });
-
+export async function initAudio(exp) {
   // create Audio element that will play all our audios
   exp.soundEffect = new Audio();
 
@@ -56,4 +20,41 @@ export function initAudio(exp) {
     },
     { capture: false, once: true },
   );
+
+  // depending on study language, dynamically load sound sources
+  const audioSrcs = [
+    `../sounds/${exp.meta.lang}/balloon-lands.mp3`,
+    `../sounds/${exp.meta.lang}/blink.mp3`,
+    `../sounds/${exp.meta.lang}/fam-hedge-1-f.mp3`,
+    `../sounds/${exp.meta.lang}/fam-hedge-1-m.mp3`,
+    `../sounds/${exp.meta.lang}/goodbye.mp3`,
+    `../sounds/${exp.meta.lang}/positive-feedback.mp3`,
+    `../sounds/${exp.meta.lang}/prompt-general.mp3`,
+    `../sounds/${exp.meta.lang}/prompt-hedge-long.mp3`,
+    `../sounds/${exp.meta.lang}/prompt-hedge.mp3`,
+    `../sounds/${exp.meta.lang}/prompt-touch-long.mp3`,
+    `../sounds/${exp.meta.lang}/prompt-touch.mp3`,
+    `../sounds/${exp.meta.lang}/test-hedge-1-f.mp3`,
+    `../sounds/${exp.meta.lang}/test-hedge-1-m.mp3`,
+    `../sounds/${exp.meta.lang}/test-hedge-2-f.mp3`,
+    `../sounds/${exp.meta.lang}/test-hedge-2-m.mp3`,
+    `../sounds/${exp.meta.lang}/test-hedge-3-f.mp3`,
+    `../sounds/${exp.meta.lang}/test-hedge-3-m.mp3`,
+    `../sounds/${exp.meta.lang}/touch-1-f.mp3`,
+    `../sounds/${exp.meta.lang}/touch-1-m.mp3`,
+    `../sounds/${exp.meta.lang}/welcome.mp3`,
+  ];
+
+  exp.elemSpecs.audioDur = {};
+
+  // save durations of the mp3s so that we can wait with animations later on
+  audioSrcs.forEach((src) => {
+    const audioTmp = new Audio();
+    audioTmp.src = src;
+    audioTmp.onloadedmetadata = () => {
+      exp.devmode
+        ? (exp.elemSpecs.audioDur[src] = audioTmp.duration / 4)
+        : (exp.elemSpecs.audioDur[src] = audioTmp.duration);
+    };
+  });
 }

@@ -1,13 +1,8 @@
 import { showSlide } from './showSlide';
+import { playAudio } from './playAudio';
 import { playFullAudio } from './playFullAudio';
 import { pause } from './pause';
 import { handleTargetClick } from './handleTargetClick';
-
-import promptGeneralSrc from '../sounds/ger/prompt-general.mp3';
-import promptHedgeSrc from '../sounds/ger/prompt-hedge.mp3';
-import promptTouchSrc from '../sounds/ger/prompt-touch.mp3';
-import promptTouchLongSrc from '../sounds/ger/prompt-touch-long.mp3';
-import testHedge3Src from '../sounds/ger/test-hedge-3-m.mp3';
 
 /**
  * Function for showing a trial, starts animation of eye & balloon movement.
@@ -37,25 +32,25 @@ export async function startTrial(exp) {
   // play audio prompts for clicking on the tablet:
   // for any trial without voiceover
   if (!exp.log[exp.trial].voiceover) {
-    exp.soundEffect.src = promptGeneralSrc;
-    exp.soundEffect.play();
+    playAudio(exp, `../sounds/${exp.meta.lang}/prompt-general.mp3`);
   } else if (exp.state[0] === 'touch') {
-    await playFullAudio(exp, promptTouchLongSrc);
+    await playFullAudio(
+      exp,
+      `../sounds/${exp.meta.lang}/prompt-touch-long.mp3`,
+    );
   } else if (exp.state[0] === 'fam') {
-    await playFullAudio(exp, promptHedgeSrc);
+    await playFullAudio(exp, `../sounds/${exp.meta.lang}/prompt-hedge.mp3`);
   } else if (exp.state[0] === 'test') {
-    await playFullAudio(exp, testHedge3Src);
+    await playFullAudio(exp, `../sounds/${exp.meta.lang}/test-hedge-3-m.mp3`);
   }
 
   // runs if participant has not responded within 5 sec
   const noTargetClickWithin5sec = () => {
     if (exp.state[0] === 'touch') {
-      exp.soundEffect.src = promptTouchSrc;
-      exp.soundEffect.play();
+      playAudio(exp, `../sounds/${exp.meta.lang}/prompt-touch.mp3`);
     }
     if (exp.state[0] !== 'touch') {
-      exp.soundEffect.src = promptHedgeSrc;
-      exp.soundEffect.play();
+      playAudio(exp, `../sounds/${exp.meta.lang}/prompt-hedge.mp3`);
     }
   };
 
