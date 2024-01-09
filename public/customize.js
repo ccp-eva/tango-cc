@@ -2,6 +2,7 @@
 const url = new URL(document.location.href);
 const subjID = url.searchParams.get('ID') || 'testID';
 const lang = url.searchParams.get('lang') || 'eng-uk';
+let selectedAgents = url.searchParams.get('agents');
 const webcam = JSON.parse(url.searchParams.get('webcam')) || false;
 
 // SELECT BACKGROUND
@@ -28,7 +29,6 @@ backgrounds.forEach((bg) => {
 
 // SELECT AGENTS
 let selectedAgentsArray = [];
-let selectedAgents;
 
 // Check if the image is selected or not, and add / delete from array
 function selectAgents(image) {
