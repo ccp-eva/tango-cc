@@ -1,0 +1,141 @@
+:root {
+  --ccp-dark-blue: hsl(204, 39%, 26%);
+  --ccp-light-blue: hsl(195, 100%, 46%);
+  --ccp-minerva-green: hsl(177, 100%, 21%);
+  --ccp-light-green: hsl(64, 70%, 49%);
+  background-color: var(--ccp-minerva-green);
+}
+
+body, input, select {
+  font-family: "PT Sans Narrow", sans-serif;
+}
+
+.heading {
+  font-family: cholla-sans, sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--ccp-minerva-green);
+  text-align: center;
+}
+
+.text .radio-label {
+  font-size: 18px;
+  color: hsl(0 0% 10%);
+}
+
+#flex-wrapper {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  background-color: #faf5e7;
+}
+
+.flex-item {
+  font-size: 20px;
+  width: 70vw;
+  margin: 5vh;
+  text-align: center;
+}
+
+.ccp-button {
+  background-color: var(--ccp-minerva-green) !important;
+  margin: 10px 0 !important;
+}
+
+.ccp-button:disabled {
+  background-color: hsl(177, 100%, 36%) !important;
+}
+
+.mdc-text-field-character-counter {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mdc-text-field__input {
+  text-align: center;
+}
+
+.radio-label {
+  margin: 20px;
+}
+
+#language-options {
+	width: auto;
+	font-size: 16px;
+	padding: 1rem 1rem 1rem;
+	background: #f2f2f3;
+	border: none;
+  border-bottom: rgb(142, 142, 142) solid 1.1px;
+}
+
+.bg-container img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.columns {
+  display: flex;
+  align-items: end;
+}
+
+.columns > * {
+ flex-basis: 100%;
+}
+
+.columns img{
+  max-width: 15rem;
+  height: auto;
+  padding: 0%;
+}
+
+.columns p{
+  margin: 0;
+}
+
+.agents-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8%, 1fr));
+  gap: 20px;
+  justify-content: space-around;
+  align-items: end;
+  margin: 20px;
+  border: 5px solid transparent;
+}
+
+.agents-container img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s;
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.agents-container img.selected, .bg-container img.selected {
+  border: 3px solid #006c66;
+}
+
+@media (max-width: 768px) {
+  .container {
+      grid-template-columns: 100%;
+  }
+}
+
+.footnote {
+  font-size: 14px;
+}
+
+.imprint, a {
+  color: rgb(66, 66, 66);
+  font-size: smaller;
+  margin: 0;
+}

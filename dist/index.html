@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./logos/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Material Design CDN CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+    />
+
+    <!-- Material Design CDN JS -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- Material Design Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Typography -->
+    <link rel="stylesheet" href="https://use.typekit.net/ess7xmw.css" />
+    <title>TANGO-CC</title>
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="./index.js"></script>
+  </head>
+
+  <body>
+    <div id="flex-wrapper">
+      <div class="flex-item">
+        <h1 class="heading">Welcome to TANGO-CC</h1>
+
+        <!-- TODO: insert citation -->
+        <!-- If you're using this for the first time: have a look at our instructions. FAQs -->
+
+        <p class="text">
+          <strong> Please enter a unique ID for the participant: </strong>
+        </p>
+
+        <label class="mdc-text-field mdc-text-field--filled">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="my-label-id"></span>
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            aria-labelledby="my-label-id"
+            maxlength="8"
+          />
+          <span class="mdc-line-ripple"></span>
+        </label>
+        <div class="mdc-text-field-helper-line">
+          <div class="mdc-text-field-character-counter">0 / 8</div>
+        </div>
+
+        <p class="text">
+          <strong> Please select a language: </strong>
+        </p>
+        <select id="language-options">
+          <option value="bay">Bayaka (DRC)</option>
+          <option value="bem">Bemba (Sambia)</option>
+          <option value="chi">Chinese (China)</option>
+          <option value="eng-in">English (India)</option>
+          <option value="eng-nz">English (New Zealand)</option>
+          <option value="eng-ni">English (Nigeria)</option>
+          <option value="eng-uk" selected>English (UK)</option>
+          <option value="eng-us">English (USA)</option>
+          <option value="ger">German (Germany)</option>
+          <option value="hai">Hai||om (Namibia)</option>
+          <option value="khw">Khwe (Namibia)</option>
+          <option value="lin">Lingala (DRC)</option>
+          <option value="mar">Marathi (India)</option>
+          <option value="sho">Shona (Zimbabwe)</option>
+          <option value="spa-ar">Spanish (Argentina)</option>
+          <option value="spa-me">Spanish (Mexico)</option>
+          <option value="swa">Swahili (Uganda)</option>
+          <option value="tur">Turkish (Turkey)</option>
+        </select>
+
+        <p class="text">
+          <strong> Do you want to record a webcam video? </strong>
+        </p>
+
+        <label class="radio-label">
+          <input type="radio" name="webcam-options" value="true" />
+          Yes
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="webcam-options" value="false" checked />
+          No
+        </label>
+
+        <br />
+        <br />
+
+        <p class="text">
+          <strong> Do you want to further customize the TANGO-CC? </strong>
+        </p>
+
+        <label class="radio-label">
+          <input type="radio" name="customize-options" value="false" checked />
+          No, use the default settings
+        </label>
+        <br />
+        <label class="radio-label">
+          <input type="radio" name="customize-options" value="true" />
+          Yes, let me choose the agents, backgrounds, and trial numbers
+        </label>
+
+        <br />
+        <br />
+
+        <div id="button-center-wrapper">
+          <button
+            type="button"
+            class="ccp-button confirm mdc-button mdc-button--raised"
+            id="button-center-item"
+            disabled
+          >
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label"><strong>CONTINUE</strong></span>
+          </button>
+        </div>
+
+        <br />
+        <hr style="width: 100%; text-align: left; margin-left: 0" />
+
+        <div class="columns">
+          <div class="col">
+            <img id="logo-ccp" src="./logos/mpi-ccp-en.svg" />
+          </div>
+          <div class="col">
+            <img id="logo-leuphana" src="./logos/leuphana-en.svg" />
+          </div>
+        </div>
+
+        <p class="imprint">
+          <a href="https://www.eva.mpg.de/imprint/" target="_blank">Imprint</a>
+          /
+          <a
+            href="https://www.eva.mpg.de/privacy-policy"
+            target="_blank"
+            id="dataProtection"
+          >
+            Data Protection</a
+          >
+        </p>
+
+        <!-- end flex-item -->
+      </div>
+
+      <!-- end flex-wrapper -->
+    </div>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 
 ### Usage
 
-Link to task: [tango-cc-demo](https://ccp-odc.eva.mpg.de/tango-cc-demo)
+Link to task: [tango-cc](https://ccp-odc.eva.mpg.de/tango-cc)
 
 ### Structure
 
@@ -36,13 +36,13 @@ Development requires [Node.js](https://nodejs.org/en/)
 
 #### Local Development
 
-1. `git clone git@github.com:ccp-eva/tango-cc-demo.git`
+1. `git clone git@github.com:ccp-eva/tango-cc.git`
 1. `npm install`
 1. `npm start`
 
 #### Deploy Application To A Server
 
-1. `git clone git@github.com:ccp-eva/tango-cc-demo.git`
+1. `git clone git@github.com:ccp-eva/tango-cc.git`
 1. `npm install`
 1. `npm run build`
 1. Upload the contents within the `dist` folder to your web hoster.

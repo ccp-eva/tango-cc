@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve",
     "build": "NODE_ENV=production webpack",
-    "deploy": "npm run build && rsync -avu --chmod D2775 dist/ ccp-odcJ:/srv/ccp-odc/tango-cc-demo/"
+    "deploy": "npm run build && rsync -avu --chmod D2775 dist/ ccp-odcJ:/srv/ccp-odc/tango-cc/"
   },
   "keywords": [],
   "author": "",

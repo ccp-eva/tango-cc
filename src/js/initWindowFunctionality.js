@@ -43,7 +43,7 @@ export function initWindowFunctionality(exp) {
     const day = new Date().toISOString().substring(0, 10);
     const time = new Date().toISOString().substring(11, 19);
     setTimeout(
-      () => mrec.downloadVideo(`tango-cc-${exp.meta.subjID}-${day}-${time}`),
+      () => mrec.downloadVideo(`tangoCC-${exp.meta.subjID}-${day}-${time}`),
       1000,
     );
   };
