@@ -85,8 +85,7 @@ export function showGoodbyeSlide(exp) {
       closeFullscreen();
     }
 
-    // TODO Goodbye html?
-    // window.location.replace(`./goodbye.html`);
+    window.location.replace(`./goodbye.html`);
   };
 
   button.addEventListener('click', handleContinueClick, {

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./logos/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Material Design CDN CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+    />
+
+    <!-- Material Design CDN JS -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- Material Design Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Typography -->
+    <link rel="stylesheet" href="https://use.typekit.net/ess7xmw.css" />
+    <title>TANGO-CC</title>
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="./faq.js"></script>
+  </head>
+
+  <body>
+    <div id="flex-wrapper">
+      <div class="flex-item">
+        <h1 class="heading">TANGO-CC: Frequently Asked Questions</h1>
+
+        <div class="faq-container">
+          <div class="faq-question" id="faq-question1">
+            Which study components can I customize?
+          </div>
+          <div class="faq-answer" id="faq-answer1">
+            <p>
+              You can select the language of the audio instructions, the webcam
+              recording, the number of trials, the study background, and the
+              displayed agents.
+            </p>
+          </div>
+
+          <div class="faq-question" id="faq-question2">
+            How did you guide children through the study?
+          </div>
+          <div class="faq-answer" id="faq-answer2">
+            <p>
+              When we collected child data for our study, a study leader guided the children through the study. Here are the guidelines we used for our data collection:
+              <ul>
+                <li> In short: don't give directions, don't point to any box/place, no direct right/wrong as feedback. </li>
+                <li>
+                  Briefly tell the children something like "Look, there are some children and balloons in the picture. We're about to play with them! A voice always explains to us what is about to happen. Let's listen to it together!" 
+                </li>
+                <li>
+                  Between the trial types (i.e. whenever there is a text slide in between), you can say something like: "Great! We'll continue playing in a moment. The game changes a bit and the voice will explain it again. Come on, let's listen to it together!”
+                </li>
+                <li>
+                  To direct attention back, "Look what's happening!" / "Well, where is the balloon?" / "Look at that animal there" etc.
+                </li>
+                <li>
+                  In between, e.g. to motivate the children, you can always say "Super" / "great" / etc. between trials. Don't praise the response of the children directly, but the participation/attention overall. 
+                </li>
+                <li>
+                  When kids ask where to click, say something like "Where's the balloon?" / "Show me where the balloon is". 
+                </li>
+                <li>
+                  When children ask if they should click in a certain place / if it's right: “Press where you think the balloon is" / “Whatever you think" etc. No direct feedback, please! Feel free to praise the children in general, but don't tell them if it was right or not
+                </li>
+              </ul> 
+            </p>
+          </div>
+
+          <div class="faq-question" id="faq-question3">
+            Does TANGO have any screen size or resolution requirements when run on tablet devices?
+          </div>
+          <div class="faq-answer" id="faq-answer3">
+            <p>
+              The task does not require a certain screen size. 
+              It even runs on smartphones. However, we would recommend a bigger screen for better handling and touch precision. 
+              What you do need is either a working internet connection or installing a live server. 
+              Intel-based tablets might be easier to set this up. 
+            </p>
+          </div>
+
+          <div class="faq-question" id="faq-question4">
+            Can I let the study run offline?
+          </div>
+          <div class="faq-answer" id="faq-answer4">
+            <p>
+              Yes, you can! The basic logic for an offline data collection is as follows: 
+              <ul>
+                <li>
+                  A live server opens the website. The name “live” server is a bit confusing. It is not actually live in the sense of “online”. It just means that it can host a website locally, so that you do not need to upload the website content somewhere else. This way, you do not need WIFI connection. You can just open this “live server” on your local device. 
+                </li>
+                <li>
+                  The live server then displays the website by running the content of our so-called “dist” folder. This folder stores all the audio files, script etc. that the website needs. We have this folder ready for use, you can download it from the
+                    <a href="https://github.com/ccp-eva/tango-cc/tree/main/dist" target="_blank">TANGO-CC GitHub page</a>
+                  . 
+                </li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="faq-question" id="faq-question5">
+            How can I set up a live server?
+          </div>
+          <div class="faq-answer" id="faq-answer5">
+            <p>
+              <ul>
+                <li>Install <a href="https://nodejs.org/en/download" target="_blank">Node.js</a> on your device.</li>
+                <li>Install the Live server: <br> # npm i -g live-server</li>
+                <li>Navigate into the "dist" folder (cd command in the console) and open the index.html with the live server.</li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="faq-question" id="faq-question6">
+            How can I set up a live server on Android?
+          </div>
+          <div class="faq-answer" id="faq-answer6">
+            <p>
+              <ol type="1">
+                <li>First you have to install termux (a linux emulator) on your android device: <a href="https://f-droid.org/repo/com.termux_118.apk" target="_blank"></a> Link to Termux</li>
+                <li>After opening this console you have to update the linux packages: <br>
+                  # apt update  <br>
+                  # apt upgrade
+                </li>
+                <li> In the console, activate the access to your device folders: <br> # termux-setup-storage</li>
+                <li>
+                  Install TANGO-CC related things: <br> 
+                    # pkg install nodejs <br>
+                    # npm i -g live-server
+                </li>
+                <li> With the command <br> # live-server <br> the browser should start on page 127.0.0.1:8080. Then your system is prepared </li>
+                <li>Now you can put the dist folder somewhere an the android device e.g., storage/downloads/dist</li>
+                <li>In tremux console you navigate into the distfolder <br>
+                  # cd ~/storage/downloads/dist <br>
+                  and start the server <br>
+                  # live-server <br>
+                  Now the experiment should run in browser.</li>  
+              </ol>
+            </p>
+          </div>
+
+          <div class="faq-question" id="faq-question7">
+            For the offline version of the study, can I create a shortcut on my desktop?
+          </div>
+          <div class="faq-answer" id="faq-answer7">
+            <p>
+              Yes, of course! Please first make sure that you enabled the live server (see questions above). 
+              If everything works as expected, make a cmd shortcut on the desktop that looks like this (example for Microsoft Surface Pro device):
+              %windir%\system32\cmd.exe /k live-server. In the shortcut settings, enter the correct pathway to the "dist" folder. 
+            </p>
+          </div>
+
+          <div class="faq-question" id="faq-question8">
+            What can I do if the website is not working?
+          </div>
+          <div class="faq-answer" id="faq-answer8">
+            <p>
+              For the online version: 
+
+              <ul>
+                <li>Clean the cache of your browser and reload the website.</li>
+                <li>Check your privacy settings and allow permissions to record via the webcam and download files.</li>
+                <li>Please note that Safari has issues with webcam recordings. Try another browser!</li>
+              </ul>
+              For the offline version:
+              <ul>
+                <li>Please make sure your device has a live server installed. Please open the index.html file with this live server! </li>
+                <li>For Android, check that the termux app has rights for accessing files and media on your device. Check that you navigated into the right folder (using the cd command in the console).
+                </li>
+              </ul> 
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="faq-item">
+          <h4 class="faq-question">Which study components can I customize?</h2>
+          <p class="faq-answer">
+            You can select
+              the language of the audio instructions, 
+              a webcam recording, 
+              the number of trials, 
+              the study background, 
+              and the displayed agents. 
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Can I let the study run offline?</h2>
+          <p class="faq-answer">
+            Yes, you can! The basic logic for an offline data collection is as follows: 
+            <ul class="faq-hidden-list">
+              <li>
+                A live server opens the website. The name “live” server is a bit confusing. It is not actually live in the sense of “online”. It just means that it can host a website locally, so that you do not need to upload the website content somewhere else. This way, you do not need WIFI connection. You can just open this “live server” on your local device. 
+              </li>
+              <li>
+                The live server then displays the website by running the content of our so-called “dist” folder. This folder stores all the audio files, script etc. that the website needs. We have this folder ready for use, you can download it from the
+                  <a href="https://github.com/ccp-eva/tango-cc/tree/main/dist" target="_blank">TANGO-CC GitHub page</a>
+                . 
+              </li>
+            </ul>
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">How did you guide children through the study?</h2>
+          <p class="faq-answer">
+            When we collected child data for our study, a study leader guided the children through the study. Here are the guidelines we used for our data collection:
+            <ul class="faq-hidden-list">
+              <li> In short: don't give directions, don't point to any box/place, no direct right/wrong as feedback. </li>
+              <li>
+                Briefly tell the children something like "Look, there are some children and balloons in the picture. We're about to play with them! A voice always explains to us what is about to happen. Let's listen to it together!" 
+              </li>
+              <li>
+                Between the trial types (i.e. whenever there is a text slide in between), you can say something like: "Great! We'll continue playing in a moment. The game changes a bit and the voice will explain it again. Come on, let's listen to it together!”
+              </li>
+              <li>
+                To direct attention back, "Look what's happening!" / "Well, where is the balloon?" / "Look at that animal there" etc.
+              </li>
+              <li>
+                In between, e.g. to motivate the children, you can always say "Super" / "great" / etc. between trials. Don't praise the response of the children directly, but the participation/attention overall. 
+              </li>
+              <li>
+                When kids ask where to click, say something like "Where's the balloon?" / "Show me where the balloon is". 
+              </li>
+              <li>
+                When children ask if they should click in a certain place / if it's right: “Press where you think the balloon is" / “Whatever you think" etc. No direct feedback, please! Feel free to praise the children in general, but don't tell them if it was right or not
+              </li>
+            </ul> 
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Does TANGO have any screen size or resolution requirements when run on tablet devices?</h2>
+          <p class="faq-answer"> The task does not require a certain screen size. 
+            It even runs on smartphones. However, we would recommend a bigger screen for better handling and touch precision. 
+            What you do need is either a working internet connection or installing a live server. 
+            Intel-based tablets might be easier to set this up. 
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">How can I set up a live server?</h2>
+          <p class="faq-answer">
+            <ul class="faq-hidden-list">
+              <li>Install <a href="https://nodejs.org/en/download" target="_blank">Node.js</a> on your device.</li>
+              <li>Install the Live server.</li>
+              <li>Navigate into the "dist" folder and open the index.html with the live server.</li>
+            </ul>
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">How can I set up a live server on Android?</h2>
+          <p class="faq-answer">
+            <ol type="1" class="faq-hidden-list">
+              <li>First you have to install termux (a linux emulator) on your android device: <a href="https://f-droid.org/repo/com.termux_118.apk" target="_blank"></a> Link to Termux</li>
+              <li>After opening this console you have to update the linux packages: <br>
+                # apt update  <br>
+                # apt upgrade
+              </li>
+              <li> In the console, activate the access to your device folders: <br> # termux-setup-storage</li>
+              <li>
+                Install TANGO-CC related things: <br> 
+                  # pkg install nodejs <br>
+                  # npm i -g live-server
+              </li>
+              <li> With the command <br> # live-server <br> the browser should start on page 127.0.0.1:8080. Then your system is prepared </li>
+              <li>Now you can put the dist folder somewhere an the android device e.g., storage/downloads/dist</li>
+              <li>In tremux console you navigate into the distfolder <br>
+                # cd ~/storage/downloads/dist <br>
+                and start the server <br>
+                # live-server <br>
+                Now the experiment should run in browser.</li>  
+            </ol>
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">What can I do if the website is not working?</h2>
+          <p class="faq-answer">
+            For the offline version:
+            <ul class="faq-hidden-list">
+              <li>Please make sure your device has a live server installed. Please open the index.html file with this live server! </li>
+              <li>For Android, check that the termux app has rights for accessing files and media on your device. Check that you navigated into the right folder (using the cd command in the console).
+              </li>
+            </ul> 
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Anything else?</h2>
+          <p class="faq-answer"> Please reach out to us! 
+          </p>
+        </div> -->
+
+        <div id="button-center-wrapper">
+          <button
+            type="button"
+            class="ccp-button confirm mdc-button mdc-button--raised"
+            id="button-center-item"
+          >
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label"
+              ><strong>BACK TO STUDY</strong></span
+            >
+          </button>
+        </div>
+
+        <br />
+        <hr style="width: 100%; text-align: left; margin-left: 0" />
+
+        <div class="columns">
+          <div class="col">
+            <img id="logo-ccp" src="./logos/mpi-ccp-en.svg" />
+          </div>
+          <div class="col">
+            <img id="logo-leuphana" src="./logos/leuphana-en.svg" />
+          </div>
+        </div>
+
+        <p class="imprint">
+          <a href="https://www.eva.mpg.de/imprint/" target="_blank">Imprint</a>
+          /
+          <a
+            href="https://www.eva.mpg.de/privacy-policy"
+            target="_blank"
+            id="dataProtection"
+          >
+            Data Protection</a
+          >
+        </p>
+
+        <!-- end flex-item -->
+      </div>
+
+      <!-- end flex-wrapper -->
+    </div>
+  </body>
+</html>
