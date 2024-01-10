@@ -3,10 +3,10 @@ const url = new URL(document.location.href);
 const subjID = url.searchParams.get('ID') || 'testID';
 const lang = url.searchParams.get('lang') || 'eng-uk';
 let selectedAgents = url.searchParams.get('agents');
+let selectedBackground = url.searchParams.get('bg');
 const webcam = JSON.parse(url.searchParams.get('webcam')) || false;
 
 // SELECT BACKGROUND
-let selectedBackground;
 function selectBackground(image) {
   // Remove the 'selected' class from all images
   const images = document.querySelectorAll('.bg-container img');
