@@ -46,7 +46,7 @@ export async function logResponse(event, exp) {
   });
 
   // play positive user feedback
-  playAudio(exp, `../sounds/${exp.meta.lang}/positive-feedback.mp3`);
+  playAudio(exp, `./sounds/${exp.meta.lang}/positive-feedback.mp3`);
 
   // NOTE: the SVG coord system starts with 0, 0 in upper left corner
   // for x: negative values mean too far left, positive values mean too far right

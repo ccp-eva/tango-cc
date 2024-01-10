@@ -22,17 +22,17 @@ export function animateTrial(exp) {
 
   // depending on which gender the current agent has, set audio
   if (exp.log[exp.trial].agent.startsWith('female')) {
-    touch1Src = `../sounds/${exp.meta.lang}/touch-1-f.mp3`;
-    famHedge1Src = `../sounds/${exp.meta.lang}/fam-hedge-1-f.mp3`;
-    testHedge1Src = `../sounds/${exp.meta.lang}/test-hedge-1-f.mp3`;
-    testHedge2Src = `../sounds/${exp.meta.lang}/test-hedge-2-f.mp3`;
-    testHedge3Src = `../sounds/${exp.meta.lang}/test-hedge-3-f.mp3`;
+    touch1Src = `./sounds/${exp.meta.lang}/touch-1-f.mp3`;
+    famHedge1Src = `./sounds/${exp.meta.lang}/fam-hedge-1-f.mp3`;
+    testHedge1Src = `./sounds/${exp.meta.lang}/test-hedge-1-f.mp3`;
+    testHedge2Src = `./sounds/${exp.meta.lang}/test-hedge-2-f.mp3`;
+    testHedge3Src = `./sounds/${exp.meta.lang}/test-hedge-3-f.mp3`;
   } else if (exp.log[exp.trial].agent.startsWith('male')) {
-    touch1Src = `../sounds/${exp.meta.lang}/touch-1-m.mp3`;
-    famHedge1Src = `../sounds/${exp.meta.lang}/fam-hedge-1-m.mp3`;
-    testHedge1Src = `../sounds/${exp.meta.lang}/test-hedge-1-m.mp3`;
-    testHedge2Src = `../sounds/${exp.meta.lang}/test-hedge-2-m.mp3`;
-    testHedge3Src = `../sounds/${exp.meta.lang}/test-hedge-3-m.mp3`;
+    touch1Src = `./sounds/${exp.meta.lang}/touch-1-m.mp3`;
+    famHedge1Src = `./sounds/${exp.meta.lang}/fam-hedge-1-m.mp3`;
+    testHedge1Src = `./sounds/${exp.meta.lang}/test-hedge-1-m.mp3`;
+    testHedge2Src = `./sounds/${exp.meta.lang}/test-hedge-2-m.mp3`;
+    testHedge3Src = `./sounds/${exp.meta.lang}/test-hedge-3-m.mp3`;
   }
 
   // get relevant elements
@@ -74,9 +74,9 @@ export function animateTrial(exp) {
         duration: 0.3,
         transformOrigin: '50% 50%',
         onStart: async function onStart() {
-          await playFullAudio(exp, `../sounds/${exp.meta.lang}/blink.mp3`);
+          await playFullAudio(exp, `./sounds/${exp.meta.lang}/blink.mp3`);
           // already set source for balloon landing here, so that sound is already preloaded
-          exp.soundEffect.src = `../sounds/${exp.meta.lang}/balloon-lands.mp3`;
+          exp.soundEffect.src = `./sounds/${exp.meta.lang}/balloon-lands.mp3`;
         },
       },
       '<',

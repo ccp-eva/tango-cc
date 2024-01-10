@@ -51,11 +51,7 @@ module.exports = {
 
   plugins: [
     new CopyPlugin({
-      patterns: [
-        { from: 'public/', to: './' },
-        { from: 'src/images/', to: './images/' },
-        { from: 'src/sounds/', to: './sounds/' },
-      ],
+      patterns: [{ from: 'public/', to: '' }],
     }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
