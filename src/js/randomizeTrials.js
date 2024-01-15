@@ -29,7 +29,7 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
   for (let i = 0; i < exp.meta.trialsTotal; i++) {
     exp.log[i] = {};
     exp.log[i].trialType = trialArray[i];
-    exp.log[i].trialNr = i + 1; // since array starts with 0
+    exp.log[i].trialNr = i + 1; // since array starts with 0;
   }
 
   // voice over for first trial of each trial kind
@@ -45,7 +45,7 @@ export function randomizeTrials(exp, selectedAgents, selectedTargets) {
   }
 
   // ---------------------------------------------------------------------------------------------------------------------
-  // FIX AGENT'S GENDER FOR FIRST 4 TRIALS (coin flip which order in experiment.js)
+  // RANDOMIZE AGENTS
   // ---------------------------------------------------------------------------------------------------------------------
   let agents = [];
 

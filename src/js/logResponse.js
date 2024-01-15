@@ -11,9 +11,17 @@ import { playAudio } from './playAudio';
  *     logResponse(event, exp);
  */
 export async function logResponse(event, exp) {
+  // calculate response time
+  exp.log[exp.trial].responsetime =
+    Date.now() - exp.log[exp.trial].timeTrialstart;
+
+  // add timestamp
+  exp.log[exp.trial].timestamp = new Date().toISOString();
+
   // add participant info into log
   exp.log[exp.trial].id = exp.meta.subjID;
   exp.log[exp.trial].lang = exp.meta.lang;
+  exp.log[exp.trial].bg = exp.meta.bg;
 
   // user feedback where they clicked (with sound)
   // create point (needed for transformation function later) and pass event coordinates
@@ -51,13 +59,14 @@ export async function logResponse(event, exp) {
   // NOTE: the SVG coord system starts with 0, 0 in upper left corner
   // for x: negative values mean too far left, positive values mean too far right
   // for y: negative values mean too high, positive values mean too low
-  exp.log[exp.trial].absoluteClickDistance = Math.abs(
-    clickScaled.x - exp.log[exp.trial].targetCenterX,
-  ).toFixed(2);
+  exp.log[exp.trial].absoluteClickDistance = parseFloat(
+    Math.abs(clickScaled.x - exp.log[exp.trial].targetCenterX).toFixed(2),
+  );
 
   // get rid of unneccessary variables for researchers' response log
   delete exp.log[exp.trial].targetX;
   delete exp.log[exp.trial].targetY;
+  delete exp.log[exp.trial].timeTrialstart;
 
   if (exp.devmode) console.log(exp.log[exp.trial]);
 }

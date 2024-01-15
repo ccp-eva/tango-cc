@@ -53,6 +53,9 @@ export async function startTrial(exp) {
 
   exp.targetClickTimer5sec = window.setTimeout(noTargetClickWithin5sec, 5000);
 
+  // add timestamp
+  exp.log[exp.trial].timeTrialstart = Date.now();
+
   // add eventlisteners so that participants can respond
   // first, get elements
   const clickableArea = document.getElementById('clickable-area');

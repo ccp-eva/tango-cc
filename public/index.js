@@ -115,6 +115,9 @@ const handleContinueClick = (event) => {
     case 'tur':
       agents = 'f05-f09-f18-f21-m05-m09-m18-m21';
       break;
+    case 'custom':
+      agents = 'f01-f02-f03-f04-m01-m02-m03-m04';
+      break;
   }
 
   // if wanted, continue to customize page

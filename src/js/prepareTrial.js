@@ -15,43 +15,8 @@ import { animateTrial } from './animateTrial';
  *     prepareTrial(exp)
  */
 export function prepareTrial(exp) {
-  const button = document.getElementById('experimentslide-button');
-
-  // show blurred canvas, button, and selected background
-  showSlide(
-    [
-      button,
-      document.getElementById('cover-blurr'),
-      exp.meta.selectedBackground,
-    ],
-    [],
-  );
-
-  if (exp.trial === 0) {
-    showSlide(
-      [
-        document.getElementById(`${exp.log[exp.trial].agent}`),
-        document.getElementById(`${exp.log[exp.trial].target}`),
-      ],
-      [],
-    );
-  }
-
-  // show agent and target of the current trial only, hide the last
-  if (exp.trial > 0) {
-    showSlide(
-      [
-        document.getElementById(`${exp.log[exp.trial].agent}`),
-        document.getElementById(`${exp.log[exp.trial].target}`),
-      ],
-      [
-        document.getElementById(`${exp.log[exp.trial - 1].agent}`),
-        document.getElementById(`${exp.log[exp.trial - 1].target}`),
-      ],
-    );
-  }
-
   // get relevant elements
+  const button = document.getElementById('experimentslide-button');
   const currentAgent = exp.log[exp.trial].agent;
   const pupilLeft = document.getElementById(`${currentAgent}-pupil-left`);
   const pupilRight = document.getElementById(`${currentAgent}-pupil-right`);
@@ -60,24 +25,39 @@ export function prepareTrial(exp) {
   const eyelineLeft = document.getElementById(`${currentAgent}-eyeline-left`);
   const eyelineRight = document.getElementById(`${currentAgent}-eyeline-right`);
   const hedge = document.getElementById('hedge');
+  const target = document.getElementById(`${exp.log[exp.trial].target}`);
 
-  // set eyes to center
+  // set objects to center
   // original value stored in e.g. pupilLeft.getBBox().x but we just need to remove the transform attribute
-  gsap.set(
+  gsap.set([pupilLeft, pupilRight, irisLeft, irisRight, hedge, target], {
+    x: 0,
+    y: 0,
+  });
+
+  // hide agents & targets from last trial
+  if (exp.trial > 0) {
+    showSlide(
+      [],
+      [
+        document.getElementById(`${exp.log[exp.trial - 1].agent}`),
+        document.getElementById(`${exp.log[exp.trial - 1].target}`),
+      ],
+    );
+  }
+
+  // show blurred canvas, button, and selected background
+  showSlide(
     [
-      pupilLeft,
-      pupilRight,
-      irisLeft,
-      irisRight,
-      hedge,
-      exp.log[exp.trial].target,
+      button,
+      document.getElementById('cover-blurr'),
+      exp.meta.selectedBackground,
+      document.getElementById(`${exp.log[exp.trial].agent}`),
+      document.getElementById(`${exp.log[exp.trial].target}`),
     ],
-    {
-      x: 0,
-      y: 0,
-    },
+    [],
   );
 
+  // show hedge for fam and test trials, hide for touch trials
   if (exp.state[0] === 'touch') {
     showSlide([], [hedge]);
   } else {

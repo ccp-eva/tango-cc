@@ -39,7 +39,7 @@
         <div class="columns">
           <div class="col">
             <p>Training 1:</p>
-            <p class="footnote">(balloon flight visible)</p>
+            <p class="footnote">(path of balloon visible)</p>
             <label class="mdc-text-field mdc-text-field--filled">
               <input
                 id="touch"
@@ -56,7 +56,7 @@
 
           <div class="col">
             <p>Training 2:</p>
-            <p class="footnote">(balloon flight partially visible)</p>
+            <p class="footnote">(path of balloon partially covered)</p>
             <label class="mdc-text-field mdc-text-field--filled">
               <input
                 id="fam"
@@ -73,7 +73,7 @@
 
           <div class="col">
             <p>Test trials:</p>
-            <p class="footnote">(balloon flight invisible)</p>
+            <p class="footnote">(path of balloon completely covered)</p>
             <label class="mdc-text-field mdc-text-field--filled">
               <input
                 id="test"
@@ -128,6 +128,33 @@
 
         <p class="text">
           <strong> Please choose which agents should be displayed: </strong>
+
+            <div class="mdc-form-field">
+              <div class="mdc-checkbox">
+                <input
+                  type="checkbox"
+                  class="mdc-checkbox__native-control"
+                  id="select-all-agents"
+                  name="select-all-agents"
+                />
+                <div class="mdc-checkbox__background">
+                  <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                    <path
+                      class="mdc-checkbox__checkmark-path"
+                      fill="none"
+                      d="M1.73,12.91 8.1,19.28 22.79,4.59"
+                    />
+                  </svg>
+                  <div class="mdc-checkbox__mixedmark"></div>
+                </div>
+                <div class="mdc-checkbox__ripple"></div>
+              </div>
+            </div>
+            <label for="select-all-agents">Select all agents.</label>
+            <p class="footnote" style="margin-top: 0;">If there are more agents than trials, the study will present a random subset of the selected agents. <br> 
+            If there are more trials than agents, the selected agents will be repeated equally often (filled up with random subset of the selected agents for remaining trials). </p>
+
+
         </p>
         <div class="agents-container">
           <img id="f01" src="./images/agents/f01.png" />
