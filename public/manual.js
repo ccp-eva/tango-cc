@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
   const questions = document.querySelectorAll('.faq-question');
+  const answers = document.querySelectorAll('.faq-answer');
+
+  for (let i = 0; i < questions.length; i++) {
+    questions[i].id = 'faq-question' + (i + 1);
+  }
+
+  for (let i = 0; i < answers.length; i++) {
+    answers[i].id = 'faq-answer' + (i + 1);
+  }
 
   questions.forEach(function (question, index) {
     question.addEventListener('click', function () {

@@ -18,14 +18,19 @@ body, input, select {
   text-align: center;
 }
 
+h3 {
+  margin: 15px 0px 5px 0px;
+  text-align: center;
+}
+
 .text .radio-label {
   font-size: 18px;
   color: hsl(0 0% 10%);
 }
 
 #flex-wrapper {
-  width: 80vw;
-  margin: 10vh auto;
+  width: 90vw;
+  margin: 5vh auto;
   display: flex;
   justify-content: center;
   background-color: #faf5e7;
@@ -141,6 +146,10 @@ body, input, select {
 .faq-container {
   max-width: 80%;
   margin: auto;
+}
+
+.faq-container p, .faq-container li{
+  text-align: left;
 }
 
 .faq-question {
