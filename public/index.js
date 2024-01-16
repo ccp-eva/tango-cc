@@ -41,6 +41,35 @@ for (const option of webcamOptions) {
   };
 }
 
+// WEBCAM PREVIEW
+const webcamButton = document.getElementById('webcam-button');
+
+const handleWebcamClick = (event) => {
+  event.preventDefault();
+  mrec.startStream({
+    audio: false,
+    video: {
+      frameRate: {
+        min: 3,
+        ideal: 5,
+        max: 30,
+      },
+      width: {
+        min: 160,
+        ideal: 320,
+        max: 640,
+      },
+      height: {
+        min: 120,
+        ideal: 240,
+        max: 480,
+      },
+      facingMode: 'user',
+    },
+  });
+  mrec.openVideoPreview();
+};
+
 // CUSTOMZE YES OR NO?
 const customizeOptions = document.getElementsByName('customize-options');
 let customize = 'false'; // no as default

@@ -1,4 +1,3 @@
-import { downloadCsv } from './downloadCsv';
 import * as mrec from '@ccp-eva/media-recorder';
 
 /**

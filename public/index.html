@@ -33,7 +33,27 @@
         <h1 class="heading">Welcome to TANGO-CC</h1>
 
         <!-- TODO: insert citation -->
-        <!-- If you're using this for the first time: have a look at our instructions. FAQs -->
+        <p>
+          Prein, J. C., ... TODO ..., Haun, D. B. M.*, &; Bohn, M.* (2024).
+          <br>
+          TANGO-CC: An open-source website for researchers to build a culture-sensitive task of gaze understanding.
+          <br>
+          <em> PsyArxiv </em>
+          <br>
+          <!-- <a href="https://doi.org/">https://doi.org/</a> -->
+        </p>
+
+        <p>
+          First time here? Have a look at our
+          <a
+            href="https://ccp-odc.eva.mpg.de/tango-cc/manual.html"
+            target="_blank"
+          >
+            Manual
+          </a>
+        </p>
+
+        <hr style="width: 100%; text-align: left; margin-left: 0" />
 
         <p class="text">
           <strong> Please enter a unique ID for the participant: </strong>
@@ -84,15 +104,47 @@
         </p>
 
         <label class="radio-label">
-          <input type="radio" name="webcam-options" value="true" />
-          Yes
-        </label>
-        <label class="radio-label">
           <input type="radio" name="webcam-options" value="false" checked />
           No
         </label>
 
+        <label class="radio-label">
+          <input type="radio" name="webcam-options" value="true" />
+          Yes
+        </label>
+
         <br />
+
+        <button
+          type="button"
+          class="ccp-button confirm foo-button mdc-button mdc-button--raised"
+          id="button-webcam-item"
+          onclick="mrec.startStream({
+          audio: false,
+          video: {
+            frameRate: {
+              min: 3,
+              ideal: 5,
+              max: 30,
+            },
+            width: {
+              min: 160,
+              ideal: 320,
+              max: 640,
+            },
+            height: {
+              min: 120,
+              ideal: 240,
+              max: 480,
+            },
+            facingMode: 'user',
+          },
+        }); mrec.openVideoPreview()"
+        >
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label"> Open Webcam Preview</span>
+        </button>
+
         <br />
 
         <p class="text">
@@ -106,7 +158,7 @@
         <br />
         <label class="radio-label">
           <input type="radio" name="customize-options" value="true" />
-          Yes, let me choose the agents, backgrounds, and trial numbers
+          Yes, let me choose the trial numbers, background, and agents
         </label>
 
         <br />
@@ -125,15 +177,6 @@
         </div>
 
         <br />
-
-        <p>
-          <em>
-            Need further help? Have a look at our
-
-          <a href="https://ccp-odc.eva.mpg.de/tango-cc/faq.html" target="_blank"
-            >Frequently Asked Questions</a
-          >. 
-        </p>
 
         <hr style="width: 100%; text-align: left; margin-left: 0" />
 
@@ -163,5 +206,8 @@
 
       <!-- end flex-wrapper -->
     </div>
+
+    <!-- mrec media recorder for webcam -->
+    <script src="https://unpkg.com/@ccp-eva/media-recorder"></script>
   </body>
 </html>
