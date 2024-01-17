@@ -1,3 +1,8 @@
+window.addEventListener('load', function () {
+  const spinner = document.getElementById('spinner-wrapper');
+  spinner.style.display = 'none';
+});
+
 // store already selected variables from index page
 const url = new URL(document.location.href);
 const subjID = url.searchParams.get('ID') || 'testID';

@@ -44,6 +44,46 @@ h3 {
   text-align: center;
 }
 
+#spinner-wrapper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+}
+
+#spinner-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#spinner-text {
+  font-size: 30px;
+  z-index: 9999;
+}
+
+#spinner {
+  max-width: 8rem;
+  animation: spin 10s linear infinite;
+  z-index: 9999;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .ccp-button {
   background-color: var(--ccp-minerva-green) !important;
   margin: 10px 0 !important;

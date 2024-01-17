@@ -10,6 +10,12 @@ import * as mrec from '@ccp-eva/media-recorder';
  *     initWindowFunctionality(exp)
  */
 export function initWindowFunctionality(exp) {
+  // display spinner until everything is loaded
+  window.addEventListener('load', function () {
+    const spinner = document.getElementById('spinner-wrapper');
+    spinner.style.display = 'none';
+  });
+
   // initially check device orientation
   if (window.innerHeight > window.innerWidth && !exp.devmode) {
     alert('Please turn your device to watch the website in landscape format!');
