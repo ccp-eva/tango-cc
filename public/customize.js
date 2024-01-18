@@ -11,6 +11,37 @@ let selectedAgents = url.searchParams.get('agents');
 let selectedBackground = url.searchParams.get('bg');
 const webcam = JSON.parse(url.searchParams.get('webcam')) || false;
 
+// TRIAL NUMBERS
+// for touch, fam and test, check whether user input is valid
+const touch = document.getElementById('touch');
+const fam = document.getElementById('fam');
+const test = document.getElementById('test');
+const trialNumbers = [touch, fam, test];
+
+trialNumbers.forEach((trial) => {
+  trial.addEventListener('input', function () {
+    // minimum 1, maximum 100
+    if (this.value <= 0) {
+      this.value = 1;
+    }
+    if (this.value > 100) {
+      this.value = 100;
+    }
+
+    // if user entered a number, check if it's a whole number
+    if (this.value !== '') {
+      if (!Number.isInteger(parseFloat(this.value))) {
+        this.value = Math.round(parseFloat(this.value));
+      }
+    }
+
+    // if user entered a character, remove it
+    if (this.value === '0') {
+      this.value = '';
+    }
+  });
+});
+
 // SELECT BACKGROUND
 function selectBackground(image) {
   // Remove the 'selected' class from all images
