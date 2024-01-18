@@ -118,6 +118,10 @@ h3 {
   border-bottom: rgb(142, 142, 142) solid 1.1px;
 }
 
+.trial-field {
+  width: 80px;
+}
+
 .bg-container img {
   width: 95%;
   height: auto;
