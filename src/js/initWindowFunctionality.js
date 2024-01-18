@@ -1,4 +1,5 @@
 import * as mrec from '@ccp-eva/media-recorder';
+import { downloadCsv } from './downloadCsv';
 
 /**
  * Function for checking device orientation.
@@ -38,13 +39,14 @@ export function initWindowFunctionality(exp) {
   // ---------------------------------------------------------------------------------------------------------------------
   // PUT DOWNLOAD FUNCTIONS INTO GLOBAL SCOPE SO THAT WE CAN DOWNLOAD FROM CONSOLE
   // ---------------------------------------------------------------------------------------------------------------------
-  window.downloadJson = () => {
-    downloadData({ meta: exp.meta, log: exp.log }, exp.meta.subjID);
+  window.downloadCsv = () => {
+    downloadCsv(exp.log, exp.meta.subjID);
   };
 
   window.mrec = mrec;
   window.downloadWebm = () => {
     mrec.stopRecorder();
+    // give some time to create Video Blob
     const day = new Date().toISOString().substring(0, 10);
     const time = new Date().toISOString().substring(11, 19);
     setTimeout(

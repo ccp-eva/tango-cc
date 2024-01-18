@@ -21,9 +21,16 @@ export function downloadCsv(log, ID) {
 
     // round targetCenterX and clickX to two decimal places
     item.targetCenterX = parseFloat(item.targetCenterX.toFixed(2));
-    item.clickX = parseFloat(item.clickX.toFixed(2));
 
-    // remove 'balloon_' from the target value
+    if (item.clickX) {
+      item.clickX = parseFloat(item.clickX.toFixed(2));
+      // if targetCenterX does not exist, skip this trial
+    } else {
+      item.keep_trial = false;
+      item.clickX = null;
+    }
+
+    // remove 'balloon-' from the target value
     item.target = item.target.replace('balloon-', '');
   });
 
