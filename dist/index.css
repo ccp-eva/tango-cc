@@ -219,3 +219,19 @@ h3 {
   padding-left: 50px;
   text-align: left;
 }
+
+#back-to-top-button-item.fixed {
+  position: fixed;
+  left: 5px;
+  top: 5px;
+}
+
+#faq-back-button-item.fixed {
+  position: fixed;
+  left: 5px;
+  top: 50px;
+}
+
+#search-input {
+  float: right;
+}
