@@ -10,8 +10,9 @@ import { showInstructionSlide } from './showInstructionSlide';
  *       showWelcomeSlide(exp);
  */
 export function showWelcomeSlide(exp) {
-  const button = document.getElementById('textslide-button');
   const textslide = document.getElementById('textslide');
+  const button = document.getElementById('textslide-button');
+  const downloadIcon = document.getElementById('download-icon');
   const experimentslide = document.getElementById('experimentslide');
   const speaker = document.getElementById('speaker');
   const clickableArea = document.getElementById('clickable-area');
@@ -26,7 +27,10 @@ export function showWelcomeSlide(exp) {
     .getElementById('foreign-object-center-right')
     .appendChild(exp.txt.familyImage);
 
-  showSlide([textslide], [experimentslide, speaker, clickableArea]);
+  showSlide(
+    [textslide],
+    [experimentslide, speaker, clickableArea, downloadIcon],
+  );
 
   // when button is clicked, advance to instructions
   button.addEventListener(

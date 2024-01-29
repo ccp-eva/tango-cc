@@ -12,7 +12,9 @@ import { closeFullscreen } from './closeFullscreen';
  *       showGoodbyeSlide(exp);
  */
 export function showGoodbyeSlide(exp) {
+  const downloadIcon = document.getElementById('download-icon');
   const button = document.getElementById('textslide-button');
+  const buttonText = document.getElementById('textslide-button-text');
   const speaker = document.getElementById('speaker');
   const textslide = document.getElementById('textslide');
   const experimentslide = document.getElementById('experimentslide');
@@ -32,8 +34,10 @@ export function showGoodbyeSlide(exp) {
     .getElementById('foreign-object-center-right')
     .replaceChild(exp.txt.familyImage, exp.txt.instructionsTestImage);
 
+  buttonText.innerHTML = 'exit';
+
   showSlide(
-    [textslide, speaker, button],
+    [textslide, speaker, button, downloadIcon],
     [
       experimentslide,
       hedge,
@@ -73,6 +77,25 @@ export function showGoodbyeSlide(exp) {
       1000,
     );
   }
+
+  // on button click, trigger download
+  const handleDownloadClick = () => {
+    downloadCsv(exp.log, exp.meta.subjID);
+    if (!exp.meta.iOSSafari && exp.meta.webcam) {
+      mrec.stopRecorder();
+      const day = new Date().toISOString().substring(0, 10);
+      const time = new Date().toISOString().substring(11, 19);
+      setTimeout(
+        () => mrec.downloadVideo(`tangoCC-${exp.meta.subjID}-${day}-${time}`),
+        1000,
+      );
+    }
+  };
+
+  downloadIcon.addEventListener('click', handleDownloadClick, {
+    capture: false,
+    once: false,
+  });
 
   // on button click, advance to first trial
   const handleContinueClick = () => {
