@@ -103,13 +103,14 @@
               by editing the code. Please visit our public GitHub repository:
               <a href="https://github.com/ccp-eva/tango-cc"
                 >https://github.com/ccp-eva/tango-cc</a
-              >. Clone the repo to your personal device (git clone
-              git@github.com:ccp-eva/tango-cc.git) and start experimenting!
-              Please note that we cannot offer individual coding counselling or
-              website hosting for your own version of the task. We developed
-              this task on macOS and use features for Unix-like operating
-              systems (e.g., rsync). If you are working on a Windows device, you
-              might need to adjust some of the code.
+              >. Clone the repo to your personal device (<code
+                >git clone git@github.com:ccp-eva/tango-cc.git</code
+              >) and start experimenting! Please note that we cannot offer
+              individual coding counselling or website hosting for your own
+              version of the task. We developed this task on macOS and use
+              features for Unix-like operating systems (e.g., rsync). If you are
+              working on a Windows device, you might need to adjust some of the
+              code.
             </p>
           </div>
 
@@ -180,14 +181,13 @@
               No matter which language you choose, the written text instructions
               will always be in English. Only the audio recordings change
               according to your language selection. This design choice has four
-              main reasons: (1) we wanted to keep things manageable! (2) the
-              text instructions are only meant for the experimentors, leading
-              the participants (e.g., children who cannot read) through the
-              study. (3) the content of the text instructions is kept to the
-              bare minimum. It is rather meant as a chance to pause between the
-              different trial types. (4) some of the cultures in which we
-              conducted our cross-cultural study (see Further reading) do not
-              rely on written text that much / at all.
+              main reasons: 
+              <ol>
+                <li>We wanted to keep things manageable!</li>
+                <li>The text instructions are only meant for the experimentors, leading the participants (e.g., children who cannot read) through the study. </li>
+                <li>The content of the text instructions is kept to the bare minimum. It is rather meant as a chance to pause between the different trial types.</li>
+                <li>Some of the communities in which we conducted our cross-cultural study (see Further reading) do not rely on written text that much / at all.</li>
+              </ol>
             </p>
           </div>
 
@@ -270,27 +270,6 @@
             </p>
           </div>
 
-          <div class="faq-question">What quality of data can I expect?</div>
-          <div class="faq-answer">
-            <p>
-              In a recent study, we tested the reliability and internal
-              consistency of the TANGO. We found that the task is able to
-              capture individual differences between children and adults. High
-              internal consistency and test-retest reliability estimates
-              underline that the captured variation is systematic. You can read
-              more about this in our paper: <br />
-
-              Prein, J. C., Kalinke, S., Haun, D. B. M.*, &amp; Bohn, M.*
-              (2023). TANGO: A reliable, open-source, browser-based task to
-              assess individual differences in gaze understanding in 3 to
-              5-year-old children and adults.
-              <em> Behavior Research Methods. </em>
-              <a href="https://doi.org/10.3758/s13428-023-02159-5"
-                >https://doi.org/10.3758/s13428-023-02159-5</a
-              >
-            </p>
-          </div>
-
           <h3>Study Requirements</h3>
 
           <div class="faq-question">
@@ -343,9 +322,9 @@
           </div>
           <div class="faq-answer">
             <p>
-              We collected data from Argentina, China, Congo-Brazzaville,
-              Germany, India, Mexico, Namibia, New Zealand, Nigeria, Sambia,
-              Turkey, Uganda, UK, USA. The task run smoothly and children from
+              We collected data from Argentina, China, Rep. Congo,
+              Germany, India, Mexico, Namibia, New Zealand, Nigeria, Zambia,
+              Türkiye, Uganda, UK, USA. The task run smoothly and children from
               all settings seemed to enjoy the task. Some children needed to get
               familiar with touching the screen, but this was not a problem (see
               question "Do my participants need to have experience with
@@ -442,6 +421,28 @@
             </p>
           </div>
 
+          <div class="faq-question">What quality of data can I expect?</div>
+          <div class="faq-answer">
+            <p>
+              In a recent study, we tested the reliability and internal
+              consistency of the TANGO. We found that the task is able to
+              capture individual differences between children and adults. High
+              internal consistency and test-retest reliability estimates
+              underline that the captured variation is systematic. You can read
+              more about this in our paper: </p>
+
+            <p>
+              Prein, J. C., Kalinke, S., Haun, D. B. M.*, &amp; Bohn, M.*
+              (2023). TANGO: A reliable, open-source, browser-based task to
+              assess individual differences in gaze understanding in 3 to
+              5-year-old children and adults.
+              <em> Behavior Research Methods. </em>
+              <a href="https://doi.org/10.3758/s13428-023-02159-5"
+                >https://doi.org/10.3758/s13428-023-02159-5</a
+              >
+            </p>
+          </div>
+
           <h3>Technical Setup</h3>
 
           <div class="faq-question">
@@ -471,14 +472,16 @@
           <div class="faq-answer">
             <p>
               The automatic download only gets triggered after all trials are
-              completed. However, you can open the browser console and download
-              the data manually at any point during the study. For this, you
-              simply need to enter the command "downloadData()" in the console
-              and press enter. The data will then be downloaded to your device.
-              Some browsers might ask you to confirm the download. The trials
-              which were not completed yet will contain some empty columns in
-              the CSV. You can do the same with the webcam recording by entering
-              "downloadWebm()" in the console.
+              completed. However, you can open the browser console (e.g.,
+              right-click on some element on the website and click "Inspect")
+              and download the data manually at any point during the study. For
+              this, you simply need to enter the command
+              <code>downloadCsv()</code> in the console and press enter. The
+              data will then be downloaded to your device. Some browsers might
+              ask you to confirm the download. The trials which were not
+              completed yet will contain some empty columns in the CSV. You can
+              do the same with the webcam recording by entering
+              <code>downloadWebm()</code> in the console.
             </p>
           </div>
 
@@ -512,73 +515,181 @@
             </ul>
           </div>
 
-          <div class="faq-question">How can I set up a live server?</div>
+          <div class="faq-question">
+            Can I host the TANGO-CC on my own server?
+          </div>
           <div class="faq-answer">
-            <ul>
+            <p>
+              Yes, you can! You can download the dist folder from TANGO-CC on
+              <a
+                href="https://github.com/ccp-eva/tango-cc/tree/main/dist"
+                target="_blank"
+                >GitHub</a
+              >
+              and host it on your own server. Please note that we cannot offer
+              individual coding counselling or website hosting for your own
+              version of the task. Please also note that we do not take any
+              responsibility for the correctness of the task nor the legal and
+              administrative aspects of your data management. We developed this
+              task on macOS and use features for Unix-like operating systems
+              (e.g., rsync). If you are working on a Windows device, you might
+              need to adjust some of the code.
+            </p>
+          </div>
+
+          <div class="faq-question">
+            Can I upload TANGO-CC data to my own server?
+          </div>
+          <div class="faq-answer">
+            <p>
+              Yes, you could. However, this requires some technical setup and
+              programming knowledge. You can download the source code from
+              TANGO-CC online (<a
+                href="https://github.com/ccp-eva/tango-cc/tree/main/dist"
+                target="_blank"
+                >GitHub</a
+              >). Then, you would need to adapt the "downloadData.js" function
+              and change it to an upload. We did this in the past by using this
+              JavaScript code (note that we upload a .json file instead of a
+              .csv file):
+            </p>
+
+            <pre>
+              <code>
+  function uploadData (safe, ID) => {
+    fetch('data/data.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: JSON.stringify(safe), fname: ID }),
+    })
+      .then((response) => response.json())
+      .then((data) => { console.log('Success:', data) })
+      .catch((error) => { console.error('Error:', error) });
+  };
+              </code>
+            </pre>
+
+            <p>
+              The corresponding php script could look like the following. Please
+              make sure to adapt the folder paths and upload links to your own
+              server and check the deploy script in the package.json.
+            </p>
+
+            <pre>
+              <code>
+&lt;?php
+$jsonString = json_decode(file_get_contents('php://input'), true);
+$data = $jsonString["data"];
+$fname = $jsonString["fname"];
+$time = date("Y-m-d-H-i-s");
+file_put_contents('tangoCC-' . $fname . '-' . $time . '.json', $data, true);
+echo '{ "success": true }';
+?&gt;
+              </code>
+            </pre>
+          </div>
+
+          <div class="faq-question">
+            How can I set up a live server on Mac or Windows?
+          </div>
+          <div class="faq-answer">
+            <p>
+              Setting up a live server on a Mac or Windows requires similar
+              steps.
+            </p>
+            <ol>
               <li>
-                Install
+                Install Node.js on your device. You can download it from the
+                official website:
                 <a href="https://nodejs.org/en/download" target="_blank"
                   >Node.js</a
                 >
-                on your device.
               </li>
               <li>
-                Install the Live server: <br />
-                # npm i -g live-server
+                <em>For Mac: </em> Open the Terminal.
+                <em>For Windows: </em> Open Command Prompt.
               </li>
               <li>
-                Navigate into the "dist" folder (cd command in the console) and
-                open the index.html with the live server.
+                Install the live-server package globally using npm (Node Package
+                Manager, which comes with Node.js) with the following command:
+                <br />
+                <code># npm i -g live-server</code>
               </li>
-            </ul>
+              <li>
+                Navigate to the directory which contains the TANGO-CC dist
+                folder, using the cd command. For example, if the dist folder is
+                in a directory called tangocc on your Desktop:
+                <br />
+                <em>For Mac: </em> <code># cd ~/Desktop/tangocc/dist</code>
+                <br />
+                <em>For Windows: </em>
+                <code># cd C:\Users\username\Desktop\tangocc\dist</code>
+              </li>
+              <li>
+                Once you're in the right directory, you can start the live
+                server with the following command:
+                <br />
+                <code># live-server</code>
+              </li>
+              <li>
+                This will start the live server and open your default web
+                browser to display your project. If you make changes to your
+                project files, the browser will automatically refresh to show
+                the changes.
+              </li>
+            </ol>
           </div>
 
           <div class="faq-question">
             How can I set up a live server on Android?
           </div>
           <div class="faq-answer">
+            <p>
+              Setting up a live server on an Android tablet is a bit more
+              complex than on a desktop operating system, but it's possible with
+              the help of Termux, a Linux environment for Android. Here are the
+              steps:
+            </p>
             <ol type="1">
               <li>
-                First you have to install termux (a linux emulator) on your
-                android device:
+                Install termux (from the play store or from the
                 <a
                   href="https://f-droid.org/repo/com.termux_118.apk"
                   target="_blank"
-                ></a>
-                Link to Termux
+                  >website</a
+                >).
               </li>
+              <li>Open Termux.</li>
               <li>
-                After opening this console you have to update the linux
-                packages: <br />
-                # apt update <br />
-                # apt upgrade
+                Update the linux packages: <br />
+                <code># apt update</code> <br />
+                <code># apt upgrade</code>
               </li>
               <li>
                 In the console, activate the access to your device folders:
                 <br />
-                # termux-setup-storage
+                <code># termux-setup-storage</code>
               </li>
               <li>
-                Install TANGO-CC related things: <br />
-                # pkg install nodejs <br />
-                # npm i -g live-server
+                Install Node.js using the following command: <br />
+                <code># pkg install nodejs</code>
               </li>
               <li>
-                With the command <br />
-                # live-server <br />
-                the browser should start on page 127.0.0.1:8080. Then your
-                system is prepared
+                Install the live-server package globally using npm (Node Package
+                Manager, which comes with Node.js) with the following command:
+                <br />
+                <code># npm i -g live-server</code>
               </li>
               <li>
-                Now you can put the dist folder somewhere an the android device
-                e.g., storage/downloads/dist
+                Navigate to the directory of your project using the cd command.
+                For example, if the TANGO-CC dist folder is in your downloads
+                folder, you would use: <br />
+                <code>cd storage/downloads/dist</code>
               </li>
               <li>
-                In tremux console you navigate into the distfolder <br />
-                # cd ~/storage/downloads/dist <br />
-                and start the server <br />
-                # live-server <br />
-                Now the experiment should run in browser.
+                Once you're in your project's directory, you can start the live
+                server with the following command: <br />
+                <code># live-server</code>
               </li>
             </ol>
           </div>
@@ -592,8 +703,8 @@
               Yes, of course! Please first make sure that you enabled the live
               server (see questions above). If everything works as expected,
               make a cmd shortcut on the desktop that looks like this (example
-              for Microsoft Surface Pro device): %windir%\system32\cmd.exe /k
-              live-server. In the shortcut settings, enter the correct pathway
+              for Microsoft Surface Pro device): <code>%windir%\system32\cmd.exe /k
+                live-server</code>. In the shortcut settings, enter the correct pathway
               to the "dist" folder.
             </p>
           </div>
@@ -726,6 +837,42 @@
                 `mailto: ${this.dataset.name}@${this.dataset.domain}.${this.dataset.tld}`; return false;"
                 >Email us</a
               >
+            </p>
+          </div>
+
+          <div class="faq-question">
+            I finished data collection with the TANGO-CC. Can I share the data
+            set with you?
+          </div>
+          <div class="faq-answer">
+            <p>
+              If you want to share your data with us, we would be eternally
+              grateful. Please make sure that you finish your data preprocessing
+              before you upload anything:
+            </p>
+            <ul>
+              <li>make sure all data is anonymised</li>
+              <li>
+                add age information in years for all participants (e.g., for a
+                30-months-old write 2.5)
+              </li>
+              <li>
+                add community / geographical information (e.g., Leipzig,
+                Germany)
+              </li>
+              <li>merge all individual participants into one big csv file</li>
+              <li>do not upload any video files</li>
+            </ul>
+            <p>
+              <strong
+                >Please only upload one final data set including all your
+                participants. Do not upload single csv files without any
+                additional information.</strong
+              >
+            </p>
+            <p>
+              We will collect and merge data sets and regularly update the OSF
+              page. Thank you so much for your help!
             </p>
           </div>
         </div>

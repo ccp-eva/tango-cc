@@ -140,26 +140,8 @@ backToTopButton.addEventListener('click', () => {
   window.scrollTo(0, 0);
 });
 
-const button = document.getElementById('faq-back-button-item');
-
-// place buttons on the side if user scrolls down
-window.addEventListener('scroll', function () {
-  if (
-    window.scrollY + window.innerHeight >=
-    document.documentElement.scrollHeight - 50
-  ) {
-    button.classList.remove('fixed');
-    backToTopButton.classList.remove('fixed');
-  } else if (window.scrollY > 0 && window.innerWidth > 750) {
-    button.classList.add('fixed');
-    backToTopButton.classList.add('fixed');
-  } else {
-    button.classList.remove('fixed');
-    backToTopButton.classList.remove('fixed');
-  }
-});
-
 // continue on button click
+const button = document.getElementById('faq-back-button-item');
 const handleContinueClick = () => {
   window.location.href = `./index.html`;
 };

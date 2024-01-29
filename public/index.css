@@ -220,18 +220,42 @@ h3 {
   text-align: left;
 }
 
-#back-to-top-button-item.fixed {
+#back-to-top-button-item, #faq-back-button-item {
   position: fixed;
   left: 5px;
   top: 5px;
+  border: white solid 1px;
 }
 
-#faq-back-button-item.fixed {
-  position: fixed;
-  left: 5px;
+#faq-back-button-item {
   top: 50px;
+}
+
+@media screen and (max-width: 750px) {
+  #back-to-top-button-item, #faq-back-button-item {
+    position: static;
+    border: none;
+  }
 }
 
 #search-input {
   float: right;
+}
+
+pre {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-width: 100%;
+  overflow: auto;
+  text-align: left;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+  font-size: 14px;
+  max-width: 100%;
+  padding: 0px;
+  margin: 0px;
 }
