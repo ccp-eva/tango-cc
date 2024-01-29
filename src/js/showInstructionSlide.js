@@ -29,15 +29,7 @@ export function showInstructionSlide(exp) {
     .getElementById('foreign-object-center-right')
     .replaceChild(exp.txt.instructionsTouchImage, exp.txt.familyImage);
 
-  showSlide(
-    [speaker],
-    // first hide buttons, participants can only start once they listened to the instructions
-    [button],
-  );
-
-  if (exp.devmode) {
-    showSlide([button], []);
-  }
+  showSlide([speaker], []);
 
   // start audio when speaker has been clicked
   speaker.addEventListener(
@@ -51,8 +43,11 @@ export function showInstructionSlide(exp) {
     },
   );
 
-  // on button click, advance to first trial
   const handleContinueClick = () => {
+    // stop audio that is potentially playing
+    exp.soundEffect.pause();
+
+    // advance to first trial
     exp.state.shift();
     prepareTrial(exp);
     showSlide([experimentslide], [textslide, speaker, button]);
