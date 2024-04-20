@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./logos/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Material Design CDN CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+    />
+
+    <!-- Material Design CDN JS -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- Material Design Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Typography -->
+    <link rel="stylesheet" href="https://use.typekit.net/ess7xmw.css" />
+    <title>TANGO-CC</title>
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="./id.js"></script>
+  </head>
+
+  <body>
+    <div id="flex-wrapper">
+      <div class="flex-item">
+        <h1 class="heading">Start the TANGO-CC</h1>
+
+        <p class="text">
+          <strong> Please enter a unique ID for the participant: </strong>
+        </p>
+
+        <label class="mdc-text-field mdc-text-field--filled">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="my-label-id"></span>
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            aria-labelledby="my-label-id"
+            maxlength="8"
+          />
+          <span class="mdc-line-ripple"></span>
+        </label>
+        <div class="mdc-text-field-helper-line">
+          <div class="mdc-text-field-character-counter">0 / 8</div>
+        </div>
+
+        <br />
+
+        <p class="text">
+          <strong> Do you want to record a webcam video? </strong>
+        </p>
+
+        <label class="radio-label">
+          <input type="radio" name="webcam-options" value="false" checked />
+          No
+        </label>
+
+        <label class="radio-label">
+          <input type="radio" name="webcam-options" value="true" />
+          Yes
+        </label>
+
+        <br />
+
+        <button
+          type="button"
+          class="ccp-button confirm foo-button mdc-button mdc-button--raised"
+          id="button-webcam-item"
+          onclick="mrec.startStream({
+          audio: false,
+          video: {
+            frameRate: {
+              min: 3,
+              ideal: 5,
+              max: 30,
+            },
+            width: {
+              min: 160,
+              ideal: 320,
+              max: 640,
+            },
+            height: {
+              min: 120,
+              ideal: 240,
+              max: 480,
+            },
+            facingMode: 'user',
+          },
+        }); mrec.openVideoPreview()"
+        >
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label"> Open Webcam Preview</span>
+        </button>
+
+        <br />
+        <br />
+
+        <div id="button-center-wrapper">
+          <button
+            type="button"
+            class="ccp-button confirm mdc-button mdc-button--raised"
+            id="button-center-item"
+            disabled
+          >
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label"><strong>START</strong></span>
+          </button>
+        </div>
+
+        <p>
+          <em>
+            If you want to save your settings, please bookmark this tab in your
+            browser.
+          </em>
+        </p>
+
+        <hr style="width: 100%; text-align: left; margin-left: 0" />
+
+        <div class="columns">
+          <div class="col">
+            <img id="logo-ccp" src="./logos/mpi-ccp-en.svg" />
+          </div>
+          <div class="col">
+            <img id="logo-leuphana" src="./logos/leuphana-en.svg" />
+          </div>
+        </div>
+
+        <p class="imprint">
+          <a href="https://www.eva.mpg.de/imprint/" target="_blank">Imprint</a>
+          /
+          <a
+            href="https://www.eva.mpg.de/privacy-policy"
+            target="_blank"
+            id="dataProtection"
+          >
+            Data Protection</a
+          >
+        </p>
+
+        <!-- end flex-item -->
+      </div>
+
+      <!-- end flex-wrapper -->
+    </div>
+
+    <!-- mrec media recorder for webcam -->
+    <script src="https://unpkg.com/@ccp-eva/media-recorder"></script>
+  </body>
+</html>

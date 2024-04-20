@@ -1,25 +1,4 @@
 const button = document.getElementById('button-center-item');
-let continueIDOK = false;
-
-// FOR INPUT FORM
-const textField = document.querySelector('.mdc-text-field__input');
-
-// define what happens on input
-const handleInput = (event) => {
-  event.preventDefault();
-  // to get most recent value, get element fresh
-  // count number of characters and display the count
-  document.querySelector('.mdc-text-field-character-counter').innerHTML = `${
-    document.querySelector('.mdc-text-field__input').value.length
-  } / 8`;
-
-  continueIDOK =
-    document.querySelector('.mdc-text-field__input').value.length > 0;
-  // enable button when eight characters are entered
-  button.disabled = !continueIDOK;
-};
-
-textField.addEventListener('keyup', handleInput, { capture: false });
 
 // LANGUAGE CHOICE
 const languageOptions = document.getElementById('language-options');
@@ -28,47 +7,6 @@ let lang = languageOptions.value;
 languageOptions.addEventListener('change', function () {
   lang = languageOptions.value;
 });
-
-// WEBCAM YES OR NO?
-const webcamOptions = document.getElementsByName('webcam-options');
-let webcam = 'false'; // no as default
-
-for (const option of webcamOptions) {
-  option.onclick = () => {
-    if (option.checked) {
-      webcam = option.value;
-    }
-  };
-}
-
-// WEBCAM PREVIEW
-const webcamButton = document.getElementById('webcam-button');
-
-const handleWebcamClick = (event) => {
-  event.preventDefault();
-  mrec.startStream({
-    audio: false,
-    video: {
-      frameRate: {
-        min: 3,
-        ideal: 5,
-        max: 30,
-      },
-      width: {
-        min: 160,
-        ideal: 320,
-        max: 640,
-      },
-      height: {
-        min: 120,
-        ideal: 240,
-        max: 480,
-      },
-      facingMode: 'user',
-    },
-  });
-  mrec.openVideoPreview();
-};
 
 // CUSTOMZE YES OR NO?
 const customizeOptions = document.getElementsByName('customize-options');
@@ -85,7 +23,6 @@ for (const option of customizeOptions) {
 // define what happens on button click
 const handleContinueClick = (event) => {
   event.preventDefault();
-  const subjID = document.querySelector('.mdc-text-field__input').value;
 
   let agents;
   let bg = '01';
@@ -151,11 +88,11 @@ const handleContinueClick = (event) => {
 
   // if wanted, continue to customize page
   if (customize === 'true') {
-    window.location.href = `./customize.html?ID=${subjID}&lang=${lang}&webcam=${webcam}&agents=${agents}&bg=${bg}&touch=1&fam=2&test=16`;
+    window.location.href = `./customize.html?lang=${lang}&agents=${agents}&bg=${bg}&touch=1&fam=2&test=16`;
 
     // otherwise, jump directly to study start
   } else {
-    window.location.href = `./tango.html?ID=${subjID}&lang=${lang}&webcam=${webcam}&agents=${agents}&bg=${bg}&touch=1&fam=2&test=16`;
+    window.location.href = `./id.html?lang=${lang}&touch=1&fam=2&test=16&bg=${bg}&agents=${agents}`;
   }
 };
 

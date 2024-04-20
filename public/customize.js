@@ -5,7 +5,6 @@ window.addEventListener('load', function () {
 
 // store already selected variables from index page
 const url = new URL(document.location.href);
-const subjID = url.searchParams.get('ID') || 'testID';
 const lang = url.searchParams.get('lang') || 'eng-uk';
 let selectedAgents = url.searchParams.get('agents');
 let selectedBackground = url.searchParams.get('bg');
@@ -90,6 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.addEventListener('click', (event) => {
+  const img = event.target.closest('.toggle-image');
+  if (img && img.nextElementSibling.tagName === 'FIGCAPTION') {
+    img.nextElementSibling.classList.toggle('hidden');
+  }
+});
+
 const allagentsCheckbox = document.getElementById('select-all-agents');
 allagentsCheckbox.addEventListener('change', function (e) {
   if (e.target.checked) {
@@ -155,7 +161,6 @@ allagentsCheckbox.addEventListener('change', function (e) {
     selectedAgentsArray = [];
   }
   selectedAgents = selectedAgentsArray.join('-');
-  console.log(selectedAgents);
 });
 
 // continue on button click
@@ -164,6 +169,6 @@ const handleContinueClick = () => {
   const touch = parseFloat(document.getElementById('touch').value);
   const fam = parseFloat(document.getElementById('fam').value);
   const test = parseFloat(document.getElementById('test').value);
-  window.location.href = `./tango.html?ID=${subjID}&lang=${lang}&webcam=${webcam}&touch=${touch}&fam=${fam}&test=${test}&bg=${selectedBackground}&agents=${selectedAgents}`;
+  window.location.href = `./id.html?lang=${lang}&touch=${touch}&fam=${fam}&test=${test}&bg=${selectedBackground}&agents=${selectedAgents}`;
 };
 button.addEventListener('click', handleContinueClick, { capture: false });
