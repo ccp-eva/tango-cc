@@ -55,14 +55,34 @@
           <div class="faq-question">What is the default selection?</div>
           <div class="faq-answer">
             <p>
-              The default settings refer to the settings we used in our
-              cross-cultural gaze understanding study. The default settings
-              always present one trial of training 1, two trials of training 2,
+              The default settings always present one trial of training 1, two trials of training 2,
               and 16 test trials. Please note that the first trial of each kind
-              plays voice-over instructions. The default background is a white
-              wall with a window. The default agents depend on the selected
+              plays voice-over instructions. The background and the agents depend on the selected
               language and match what we chose in our cross-cultural gaze
-              understanding study (see XXX citation).
+              understanding study (Bohn, Prein et al., 2024). Visit the 
+              <a href="https://ccp-odc.eva.mpg.de/tango-cc/customize.html">Customization page</a>
+              and hover over the agent images to see their IDs. 
+
+              <ul>
+                <li> Bemba (Zambia): background 01, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+                <li> Chinese (China): background 01, agents f18-f19-f20-f21-m18-m19-m20-m21</li>
+                <li> English (India): background 01, agents f22-f23-f24-f25-m22-m23-m24-m25</li>
+                <li> English (New Zealand): background 01, agents f05-f06-f11-f15-m05-m06-m11-m15</li>
+                <li> English (Nigeria): background 01, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+                <li> English (UK): background 01, agents f05-f07-f08-f10-m03-m06-m09-m11</li>
+                <li> English (USA): background 01, agents f01-f05-f06-f09-m05-m06-m08-m09</li>
+                <li> German (Germany): background 01, agents f05-f07-f08-f10-m03-m06-m09-m11</li>
+                <li> Hai||kom (Namibia): background 01, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+                <li> Khwedam (Namibia): background 01, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+                <li> Lingala (Rep. Congo): background 02, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+                <li> Marathi (India): background 01, agents f22-f23-f24-f25-m22-m23-m24-m25</li>
+                <li> Shona (Zimbabwe): background 01, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+                <li> Spanish (Argentina): background 01, agents f05-f07-f09-f21-m05-m07-m13-m18</li>
+                <li> Spanish (Mexico): background 01, agents f05-f12-f15-f16-m13-m14-m15-m17</li>
+                <li> Kiswahili (Uganda): background 02, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+                <li> Turkish (Türkiye): background 01, agents f05-f09-f18-f21-m05-m09-m18-m21</li>
+                <li> Yaka (Rep. Congo): background 02, agents f01-f02-f03-f04-m01-m02-m03-m04</li>
+              </ul> 
             </p>
           </div>
 
@@ -74,11 +94,13 @@
               We added this language selection to offer you even more
               flexibility. If you work with an offline version of the TANGO-CC
               and have downloaded the "dist" folder, you can exchange the audio
-              recordings in the folder "sounds &gt custom" with whatever mp3
+              recordings in the folder "sounds", and then "custom" with whatever mp3
               files you want. The only requirement is that it matches the naming
               of the placeholder mp3s within the "custom" folder. If you then
               start the live server and open the task, select language: custom
-              and the task will play your own mp3s!
+              and the task will play your own mp3s! 
+              Please note that trials with audio instructions wait with their animation until the audio recording is finished.
+              Therefore, if the audio recording is too long and contains pauses, the trial might seem to be stuck.
             </p>
           </div>
 
@@ -317,8 +339,7 @@
           </div>
 
           <div class="faq-question">
-            What are your experiences with participants with different cultural
-            backgrounds completing the TANGO-CC?
+            What are your experiences with participants comming from different communities completing the TANGO-CC?
           </div>
           <div class="faq-answer">
             <p>
@@ -692,6 +713,17 @@ echo '{ "success": true }';
                 <code># live-server</code>
               </li>
             </ol>
+          </div>
+
+          <div class="faq-question">
+            Where will the study data be downloaded to?
+          </div>
+          <div class="faq-answer">
+            <p>
+              The study data exists of a CSV file and, if a webcam recording was selected, a WEBM file. 
+              The files will be stored in your Downloads folder (or the path you personally specified in your browser settings).
+              If you want to change the download location, you can do so in your browser settings (please note that this change applies to all other downloads as well).
+            </p>
           </div>
 
           <div class="faq-question">
