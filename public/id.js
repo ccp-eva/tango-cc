@@ -3,8 +3,11 @@ let continueIDOK = false;
 // store already selected variables from index page
 const url = new URL(document.location.href);
 const lang = url.searchParams.get('lang') || 'eng-uk';
-let agents = url.searchParams.get('agents');
-let bg = url.searchParams.get('bg');
+const agents = url.searchParams.get('agents');
+const bg = url.searchParams.get('bg');
+const touch = url.searchParams.get('touch');
+const fam = url.searchParams.get('fam');
+const test = url.searchParams.get('test');
 
 // FOR INPUT FORM
 const textField = document.querySelector('.mdc-text-field__input');
@@ -72,7 +75,7 @@ const handleContinueClick = (event) => {
   event.preventDefault();
   const subjID = document.querySelector('.mdc-text-field__input').value;
 
-  window.location.href = `./tango.html?lang=${lang}&touch=1&fam=2&test=16&bg=${bg}&agents=${agents}&ID=${subjID}&webcam=${webcam}`;
+  window.location.href = `./tango.html?lang=${lang}&touch=${touch}&fam=${fam}&test=${test}&bg=${bg}&agents=${agents}&ID=${subjID}&webcam=${webcam}`;
 };
 
 button.addEventListener('click', handleContinueClick, { capture: false });
