@@ -1,5 +1,11 @@
 # TANGO-CC
 
+![Zenodo Badge](https://zenodo.org/badge/710196381.svg?sanitize=true)
+
+The TANGO–CC captures individual- and community-level variation in gaze following. Minimal language demands and the web-app implementation allow fast and easy contextual adaptations to each community. Psychometric properties were asssessed by analyzing a data set from 2.5- to 11-year-old children from 17 diverse communities. We found good internal consistency across all ages and communities. Three different trial types familiarize participants with the task to locate a balloon and use an agent's gaze as a cue.
+
+![TANGO-CC Trials](/src/images/tango-cc-procedure.png)
+
 ### Usage
 
 Link to task: [tango-cc](https://ccp-odc.eva.mpg.de/tango-cc)
